@@ -1,53 +1,18 @@
 var ngIntroDirective = angular.module('angular-intro',[]);
 
+// TODO: Use isolate scope, but requires angular 1.2: http://plnkr.co/edit/a2c14O?p=preview
+// See: http://stackoverflow.com/questions/18796023/in-a-directive-handle-calls-to-a-user-defined-method-name
+
 ngIntroDirective.directive('ngIntro', [function () {
-
-
 
    return {
        restrict: 'A',
 
-       scope:
-       {
-           callmethod: '=ngIntroFunction',
-           opts: '=ngIntroOptions'
-
-       },
        link: function(scope, element, attrs){
 
-           scope.callmethod = function() {
-               attrs.$observe('IntroSnippets', function(actualValue){
-                   console.log(actualValue);
-               });
-
+           scope[attrs.ngIntroMethod] = function() {
                var intro = introJs();
-               intro.setOptions({
-                   steps:[
-                       {
-                           element: document.querySelector('#step1'),
-                           intro: "This is a tooltip."
-                       },
-                       {
-                           element: document.querySelectorAll('#step2')[0],
-                           intro: "Ok, wasn't that fun?",
-                           position: 'right'
-                       },
-                       {
-                           element: '#step3',
-                           intro: 'More features, more fun.',
-                           position: 'left'
-                       },
-                       {
-                           element: '#step4',
-                           intro: "Another step.",
-                           position: 'bottom'
-                       },
-                       {
-                           element: '#step5',
-                           intro: 'Get it, use it.'
-                       }
-                   ]
-               });
+               intro.setOptions(scope[attrs.ngIntroOptions]);
                intro.start();
            };
        }
