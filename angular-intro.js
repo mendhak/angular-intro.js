@@ -10,10 +10,25 @@ ngIntroDirective.directive('ngIntro', [function () {
 
        link: function(scope, element, attrs){
 
-           scope[attrs.ngIntroMethod] = function() {
-               var intro = introJs();
+           scope[attrs.ngIntroMethod] = function(step) {
+
+               if(typeof(step)=="string"){
+                   var intro = introJs(step);
+               }
+               else{
+                   var intro = introJs();
+               }
+
+
                intro.setOptions(scope[attrs.ngIntroOptions]);
-               intro.start();
+
+               if(typeof(step)=="number"){
+                   intro.goToStep(step).start();
+               }
+               else{
+                   intro.start();
+               }
+
            };
        }
    }
