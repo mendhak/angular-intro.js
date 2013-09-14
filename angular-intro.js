@@ -3,7 +3,7 @@ var ngIntroDirective = angular.module('angular-intro',[]);
 // TODO: Use isolate scope, but requires angular 1.2: http://plnkr.co/edit/a2c14O?p=preview
 // See: http://stackoverflow.com/questions/18796023/in-a-directive-handle-calls-to-a-user-defined-method-name
 
-ngIntroDirective.directive('ngIntro', [function () {
+ngIntroDirective.directive('ngIntroOptions', [function () {
 
    return {
        restrict: 'A',
