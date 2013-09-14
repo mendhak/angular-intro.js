@@ -20,7 +20,10 @@
 
 <body >
 
-<div class="container-narrow" ng-controller="MyController" ng-intro="" ng-intro-options="IntroSnippets" ng-intro-method="CallMe">
+<div class="container-narrow" ng-controller="MyController"
+     ng-intro="" ng-intro-options="IntroSnippets" ng-intro-method="CallMe"
+     ng-intro-oncomplete="CompletedEvent" ng-intro-onexit="ExitEvent"
+     ng-intro-onchange="ChangeEvent" ng-intro-onbeforechange="BeforeChangeEvent">
 
     <div class="masthead">
         <ul id="step5" class="nav nav-pills pull-right">
