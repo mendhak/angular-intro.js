@@ -19,7 +19,6 @@ ngIntroDirective.directive('ngIntro', [function () {
                    var intro = introJs();
                }
 
-
                intro.setOptions(scope[attrs.ngIntroOptions]);
 
                if(attrs.ngIntroOncomplete){
@@ -38,13 +37,12 @@ ngIntroDirective.directive('ngIntro', [function () {
                    intro.onbeforechange(scope[attrs.ngIntroOnbeforechange]);
                }
 
-
-
                if(typeof(step)=="number"){
                    intro.goToStep(step).start();
                }
                else{
                    intro.start();
+
                }
 
            };
