@@ -19,7 +19,7 @@ ngIntroDirective.directive('ngIntroOptions', [function () {
                    var intro = introJs();
                }
 
-               intro.setOptions(scope[attrs.ngIntroOptions]);
+               intro.setOptions(scope.$eval(attrs.ngIntroOptions));
 
                if(attrs.ngIntroOncomplete){
                    intro.oncomplete(scope[attrs.ngIntroOncomplete]);
