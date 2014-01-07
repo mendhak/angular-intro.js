@@ -1,0 +1,21 @@
+{
+  "name": "mendhak/angular-intro.js",
+  "version": "1.0.0",
+  "main": "angular-intro.js",
+  "description": "Angular directive to wrap intro.js",
+  "license": "MIT",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt",
+    "**/*.html",
+    "README.md",
+    "assets"
+  ],
+  "dependencies": {
+    "intro.js": "0.5.0",
+    "lib": "lib"
+  },
+  "devDependencies": {
+   
+  }
+}
