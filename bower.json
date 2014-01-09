@@ -12,10 +12,9 @@
     "assets"
   ],
   "dependencies": {
-    "intro.js": "0.5.0",
-    "lib": "lib"
+    "intro.js": "0.5.0"
   },
   "devDependencies": {
-   
+
   }
 }
