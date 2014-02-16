@@ -18,6 +18,8 @@ The two main directives are `ng-intro-options` and `ng-intro-method`.
 
 For example, if you set `ng-intro-method="CallMe"`, then you can later call `ng-click="CallMe();"` as long as you are still in the same controller scope.  You can also specify a step number in the method call, `CallMe(3);`.
 
+To start the intro from code, either call `$scope.CallMe();` or set `ng-intro-autostart="true"`.  If the `$scope.CallMe();` doesn't work, it might be because your DOM isn't ready. Put it in a `$timeout`.
+
 There are also directives that link to the intro.js callbacks, namely `ng-intro-oncomplete`, `ng-intro-onexit`, `ng-intro-onchange` and `ng-intro-onbeforechange`.
 
 
