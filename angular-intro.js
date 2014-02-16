@@ -46,6 +46,11 @@ ngIntroDirective.directive('ngIntroOptions', [function () {
                }
 
            };
+
+           if(attrs.ngIntroAutostart == "true"){
+               scope[attrs.ngIntroMethod]();
+           }
+
        }
    }
 }]);

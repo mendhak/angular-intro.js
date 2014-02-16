@@ -23,7 +23,8 @@
 <div class="container-narrow" ng-controller="MyController"
      ng-intro-options="IntroOptions" ng-intro-method="CallMe"
      ng-intro-oncomplete="CompletedEvent" ng-intro-onexit="ExitEvent"
-     ng-intro-onchange="ChangeEvent" ng-intro-onbeforechange="BeforeChangeEvent">
+     ng-intro-onchange="ChangeEvent" ng-intro-onbeforechange="BeforeChangeEvent"
+     ng-intro-autostart="false">
 
     <div class="masthead">
         <ul id="step5" class="nav nav-pills pull-right">
@@ -51,7 +52,7 @@
             <p>Set the options like so: <code>ng-intro-options="IntroOptions"</code>. Define <code>$scope.IntroOptions</code> in your controller.  The format is exactly the same as the <a href="https://github.com/usablica/intro.js#options">original</a>.</p>
 
             <h4>Method name</h4>
-            <p>Pick a method name, <code>ng-intro-method="CallMe"</code>. You can invoke the intro from elsewhere by calling <code>CallMe();</code>.  You can also specify a step number using <code>CallMe(3);</code></p>
+            <p>Pick a method name, <code>ng-intro-method="CallMe"</code>. You can invoke the intro from elsewhere by calling <code>CallMe();</code>.  You can also specify a step number using <code>CallMe(3);</code>. To autostart, use <code>ng-intro-autostart="true"</code></p>
 
             <h4>Callbacks</h4>
             <p>You can get callbacks to your controller using the <code>ng-intro-oncomplete</code>, <code>ng-intro-onexit</code>, <code>ng-intro-onchange</code> and <code>ng-intro-onbeforechange</code> directives.</p>
