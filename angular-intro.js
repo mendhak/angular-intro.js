@@ -3,7 +3,7 @@ var ngIntroDirective = angular.module('angular-intro',[]);
 // TODO: Use isolate scope, but requires angular 1.2: http://plnkr.co/edit/a2c14O?p=preview
 // See: http://stackoverflow.com/questions/18796023/in-a-directive-handle-calls-to-a-user-defined-method-name
 
-ngIntroDirective.directive('ngIntroOptions', [function () {
+ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
 
    return {
        restrict: 'A',
@@ -42,15 +42,15 @@ ngIntroDirective.directive('ngIntroOptions', [function () {
                }
                else{
                    intro.start();
-
                }
 
            };
 
-           if(attrs.ngIntroAutostart == "true"){
-               scope[attrs.ngIntroMethod]();
-           }
 
+           if(attrs.ngIntroAutostart == "true"){
+               //Only runs when DOM is ready
+               $timeout(function() {scope[attrs.ngIntroMethod]();}, 0);
+           }
        }
    }
 }]);

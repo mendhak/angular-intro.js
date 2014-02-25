@@ -18,7 +18,7 @@
       <option name="program" value="/usr/bin/uglifyjs" />
       <option name="scopeName" value="Project Files" />
       <option name="trackOnlyRoot" value="true" />
-      <option name="workingDir" value="$FileDir$" />
+      <option name="workingDir" value="$PROJECT_DIR$" />
       <envs />
     </TaskOptions>
   </component>
