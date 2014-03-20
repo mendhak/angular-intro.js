@@ -10,6 +10,8 @@ app.controller('MyController', function ($scope) {
 
     $scope.BeforeChangeEvent = function () { console.log("Before Change Event called"); };
 
+    $scope.AfterChangeEvent = function () { console.log("After Change Event called"); };
+
     $scope.IntroOptions = {
                    steps:[
                        {

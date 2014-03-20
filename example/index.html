@@ -13,7 +13,7 @@
     <link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet">
 
     <!-- Add IntroJs styles -->
-    <link href="../lib/introjs.css" rel="stylesheet">
+    <link href="../bower_components/intro.js/introjs.css" rel="stylesheet">
 
 
 </head>
@@ -24,6 +24,7 @@
      ng-intro-options="IntroOptions" ng-intro-method="CallMe"
      ng-intro-oncomplete="CompletedEvent" ng-intro-onexit="ExitEvent"
      ng-intro-onchange="ChangeEvent" ng-intro-onbeforechange="BeforeChangeEvent"
+     ng-intro-onafterchange="AfterChangeEvent"
      ng-intro-autostart="false">
 
     <div class="masthead">
@@ -98,12 +99,12 @@ position: 'right'
     <hr>
 
 </div>
-<script type="text/javascript" src="../lib/intro.min.js"></script>
+<script type="text/javascript" src="../bower_components/intro.js/minified/intro.min.js"></script>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-<script src="../build/angular-intro.min.js"></script>
-<script src="../lib/app.js"></script>
+<script src="../angular-intro.js"></script>
+<script src="app.js"></script>
 
 </body>
 </html>

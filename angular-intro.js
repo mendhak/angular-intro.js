@@ -37,6 +37,10 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
                    intro.onbeforechange(scope[attrs.ngIntroOnbeforechange]);
                }
 
+               if(attrs.ngIntroOnafterchange){
+                   intro.onafterchange(scope[attrs.ngIntroOnafterchange]);
+               }
+
                if(typeof(step)=="number"){
                    intro.goToStep(step).start();
                }
