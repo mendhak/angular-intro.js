@@ -13,10 +13,12 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', '$parse', function ($t
 
             scope[attrs.ngIntroMethod] = function(step) {
 
+                var intro;
+
                 if(typeof(step) === 'string') {
-                    var intro = introJs(step);
+                    intro = introJs(step);
                 } else {
-                    var intro = introJs();
+                    intro = introJs();
                 }
 
                 intro.setOptions(scope.$eval(attrs.ngIntroOptions));
@@ -54,5 +56,5 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', '$parse', function ($t
                 });
             }
         }
-    }
+    };
 }]);
