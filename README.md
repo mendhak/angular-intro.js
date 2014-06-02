@@ -7,6 +7,12 @@ An angularjs directive that wraps [intro.js](http://usablica.github.io/intro.js/
 
 See [the project page](http://code.mendhak.com/angular-intro.js/) for an overview.
 
+## Bower
+
+You can install this package through `Bower` by using the following command :
+
+    bower install angular-intro.js --save
+
 
 ## Details
 
