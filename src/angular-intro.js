@@ -49,8 +49,10 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', '$parse', function ($t
                     intro.start();
                 }
             };
+            
+            var autostart = $parse(attrs.ngIntroAutostart)(scope);
 
-            if(attrs.ngIntroAutostart == 'true') {
+            if(autostart) {
                 $timeout(function() {
                     $parse(attrs.ngIntroMethod)(scope)();
                 });
