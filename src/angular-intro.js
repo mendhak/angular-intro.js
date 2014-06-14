@@ -5,42 +5,52 @@ var ngIntroDirective = angular.module('angular-intro', []);
  * See: http://stackoverflow.com/q/18796023/237209
  */
 
-ngIntroDirective.directive('ngIntroOptions', ['$timeout', '$parse', function ($timeout, $parse) {
+ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
 
     return {
         restrict: 'A',
+        scope: {
+            ngIntroMethod: "=",
+            ngIntroOptions: '=',
+            ngIntroOncomplete: '&',
+            ngIntroOnexit: '&',
+            ngIntroOnchange: '&',
+            ngIntroOnbeforechange: '&',
+            ngIntroOnafterchange: '&',
+            ngIntroAutostart: '@'
+        },
         link: function(scope, element, attrs) {
-
-            scope[attrs.ngIntroMethod] = function(step) {
+            scope.ngIntroMethod = function(step) {
 
                 var intro;
 
                 if(typeof(step) === 'string') {
                     intro = introJs(step);
+
                 } else {
                     intro = introJs();
                 }
 
-                intro.setOptions(scope.$eval(attrs.ngIntroOptions));
+                intro.setOptions(scope.ngIntroOptions);
 
-                if(attrs.ngIntroOncomplete) {
-                    intro.oncomplete($parse(attrs.ngIntroOncomplete)(scope));
+                if(scope.ngIntroOncomplete) {
+                    intro.oncomplete(scope.ngIntroOncomplete);
                 }
 
-                if(attrs.ngIntroOnexit) {
-                    intro.onexit($parse(attrs.ngIntroOnexit)(scope));
+                if(scope.ngIntroOnexit) {
+                    intro.onexit(scope.ngIntroOnexit);
                 }
 
-                if(attrs.ngIntroOnchange) {
-                    intro.onchange($parse(attrs.ngIntroOnchange)(scope));
+                if(scope.ngIntroOnchange) {
+                    intro.onchange(scope.ngIntroOnchange);
                 }
 
-                if(attrs.ngIntroOnbeforechange) {
-                    intro.onbeforechange($parse(attrs.ngIntroOnbeforechange)(scope));
+                if(scope.ngIntroOnbeforechange) {
+                    intro.onbeforechange(scope.ngIntroOnbeforechange);
                 }
 
-                if(attrs.ngIntroOnafterchange) {
-                    intro.onafterchange($parse(attrs.ngIntroOnafterchange)(scope));
+                 if(scope.ngIntroOnafterchange) {
+                     intro.onafterchange(scope.ngIntroOnafterchange);
                 }
 
                 if(typeof(step) === 'number') {
@@ -49,12 +59,10 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', '$parse', function ($t
                     intro.start();
                 }
             };
-            
-            var autostart = $parse(attrs.ngIntroAutostart)(scope);
 
-            if(autostart) {
+            if(scope.ngIntroAutostart == 'true') {
                 $timeout(function() {
-                    $parse(attrs.ngIntroMethod)(scope)();
+                    scope.ngIntroMethod();
                 });
             }
         }
