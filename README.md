@@ -7,6 +7,12 @@ An angularjs directive that wraps [intro.js](http://usablica.github.io/intro.js/
 
 See [the project page](http://code.mendhak.com/angular-intro.js/) for an overview.
 
+## Bower
+
+You can install this package through `Bower` by using the following command :
+
+    bower install angular-intro.js --save
+
 
 ## Details
 
@@ -21,6 +27,29 @@ For example, if you set `ng-intro-method="CallMe"`, then you can later call `ng-
 To start the intro from code, either call `$scope.CallMe();` or set `ng-intro-autostart="true"`.  If the `$scope.CallMe();` doesn't work, it might be because your DOM isn't ready. Put it in a `$timeout`.
 
 There are also directives that link to the intro.js callbacks, namely `ng-intro-oncomplete`, `ng-intro-onexit`, `ng-intro-onchange` `ng-intro-onbeforechange` and `ng-intro-onafterchange`.
+
+
+## Working with the code
+
+First, get the node modules needed (grunt, bower)
+
+    npm install
+    
+Next, use bower to get the JS libraries needed (intro.js)
+
+    node_modules/.bin/bower install
+
+Then, whenever you make any changes, get grunt to build the minified angular-intro.min.js
+
+    node_modules/.bin/grunt 
+
+If you want to view the demo page to make sure everything's working, the quickest way is to start a web server
+
+    python -m SimpleHTTPServer
+    
+And browse to `http://localhost:8000/example/index.html`   
+
+
 
 
 ## License
