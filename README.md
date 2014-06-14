@@ -1,4 +1,4 @@
-angular-intro.js
+angular-intro.js [![Build Status](https://travis-ci.org/mendhak/angular-intro.js.svg?branch=master)](https://travis-ci.org/mendhak/angular-intro.js)
 ================
 
 An angularjs directive that wraps [intro.js](http://usablica.github.io/intro.js/) functionality.
