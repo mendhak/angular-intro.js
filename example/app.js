@@ -14,8 +14,9 @@ app.controller('MyController', function ($scope) {
         console.log("Change Event called");
     };
 
-    $scope.BeforeChangeEvent = function () {
+    $scope.BeforeChangeEvent = function (targetElement) {
         console.log("Before Change Event called");
+        console.log(targetElement);
     };
 
     $scope.AfterChangeEvent = function () {
