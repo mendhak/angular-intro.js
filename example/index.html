@@ -18,9 +18,9 @@
 	<body>
 		<div class="container-narrow" ng-controller="MyController"
 		     ng-intro-options="IntroOptions" ng-intro-method="CallMe"
-		     ng-intro-oncomplete="CompletedEvent()" ng-intro-onexit="ExitEvent()"
-		     ng-intro-onchange="ChangeEvent()" ng-intro-onbeforechange="BeforeChangeEvent()"
-		     ng-intro-onafterchange="AfterChangeEvent()"
+		     ng-intro-oncomplete="CompletedEvent" ng-intro-onexit="ExitEvent"
+		     ng-intro-onchange="ChangeEvent" ng-intro-onbeforechange="BeforeChangeEvent"
+		     ng-intro-onafterchange="AfterChangeEvent"
 		     ng-intro-autostart="false">
 
 		    <div class="masthead">
@@ -94,11 +94,9 @@ steps:[
 
 		</div>
 		<script type="text/javascript" src="../bower_components/intro.js/minified/intro.min.js"></script>
-
-
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script>
-		<script src="../src/angular-intro.js"></script>
-		<script src="app.js"></script>
+		<script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+		<script type="text/javascript" src="../src/angular-intro.js"></script>
+		<script type="text/javascript" src="app.js"></script>
 
 	</body>
 </html>

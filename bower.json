@@ -12,9 +12,8 @@
     "assets"
   ],
   "dependencies": {
-    "intro.js": "0.7.1"
+    "angular": "1.2.8",
+    "intro.js": "0.9.0"
   },
-  "devDependencies": {
-
-  }
+  "devDependencies": {}
 }

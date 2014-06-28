@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - "0.10"
+
+notifications:
+    email: false
+
+install:
+  - npm install
+  - node_modules/.bin/bower install
+
+script:
+  # Just run the default task and make sure it builds, there aren't any tests :(
+  - node_modules/.bin/grunt
