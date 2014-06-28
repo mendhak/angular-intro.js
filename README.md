@@ -22,13 +22,13 @@ The two main directives are `ng-intro-options` and `ng-intro-method`.
 
 `ng-intro-options="IntroOptions"`
 
-You should create a `$scope.IntroOptions` in your controller which contains the intro.js options. The options are exactly the same as [the original](https://github.com/usablica/intro.js#options).  This also allows you to modify the options as part of your controller behavior if necessary.
+You should create a `$scope.IntroOptions` in your controller which contains the intro.js options. The options are exactly the same as [the original](https://github.com/usablica/intro.js#options).  This also allows you to modify the options as part of your controller behavior if necessary.  You don't have to use `IntroOptions`, you can specify some other name. 
 
 ### Start method
 
 `ng-intro-method="CallMe"` 
 
-The directive will create a method on `$scope.CallMe` so that you can invoke it yourself later.  Make sure the there isn't a method `CallMe` already in your controller. 
+The directive will create a method on `$scope.CallMe` so that you can invoke it yourself later.  Make sure the there isn't a method `CallMe` already in your controller.  You don't have to use `CallMe`, you can specify some other name.
 
 ### Call the start method
 
