@@ -10,8 +10,9 @@ app.controller('MyController', function ($scope) {
         console.log("Exit Event called");
     };
 
-    $scope.ChangeEvent = function () {
+    $scope.ChangeEvent = function (targetElement) {
         console.log("Change Event called");
+        console.log(targetElement);
     };
 
     $scope.BeforeChangeEvent = function (targetElement) {
@@ -19,8 +20,9 @@ app.controller('MyController', function ($scope) {
         console.log(targetElement);
     };
 
-    $scope.AfterChangeEvent = function () {
+    $scope.AfterChangeEvent = function (targetElement) {
         console.log("After Change Event called");
+        console.log(targetElement);
     };
 
     $scope.IntroOptions = {

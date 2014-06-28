@@ -8,11 +8,11 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
         scope: {
             ngIntroMethod: "=",
             ngIntroOptions: '=',
-            ngIntroOncomplete: '&',
-            ngIntroOnexit: '&',
-            ngIntroOnchange: '&',
+            ngIntroOncomplete: '=',
+            ngIntroOnexit: '=',
+            ngIntroOnchange: '=',
             ngIntroOnbeforechange: '=',
-            ngIntroOnafterchange: '&',
+            ngIntroOnafterchange: '=',
             ngIntroAutostart: '@'
         },
         link: function(scope, element, attrs) {
@@ -38,21 +38,23 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
                 }
 
                 if(scope.ngIntroOnchange) {
-                    intro.onchange(scope.ngIntroOnchange);
+                    intro.onchange(function(targetElement){
+                       $timeout(function() { scope.ngIntroOnchange(targetElement)});
+                    });
                 }
 
                 if(scope.ngIntroOnbeforechange) {
-
                     intro.onbeforechange(function(targetElement) {
                         $timeout(function() {
-                            scope.$apply( scope.ngIntroOnbeforechange(targetElement) );
+                             scope.ngIntroOnbeforechange(targetElement) ;
                         }, 0);
                     });
-
                 }
 
                  if(scope.ngIntroOnafterchange) {
-                     intro.onafterchange(scope.ngIntroOnafterchange);
+                     intro.onafterchange(function(targetElement){
+                        $timeout(function() { scope.ngIntroOnafterchange(targetElement); });
+                     });
                 }
 
                 if(typeof(step) === 'number') {
