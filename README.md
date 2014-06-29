@@ -14,7 +14,7 @@ You can install this package through `Bower` by using the following command :
     bower install angular-intro.js --save
 
 
-## Details
+## How to use
 
 The two main directives are `ng-intro-options` and `ng-intro-method`.
 
@@ -60,9 +60,13 @@ In your controller, create `ChangeEvent`
 The other intro.js callbacks you can specify are `ng-intro-oncomplete`, `ng-intro-onexit`, `ng-intro-onchange` `ng-intro-onbeforechange` and `ng-intro-onafterchange`.
 
 
-## Working with the code
+### Plunker
 
-First, get the node modules needed (grunt, bower)
+You can also use this [sample plunker](http://plnkr.co/edit/wo9EzfbOFjM7NDoAvmjA?p=preview)
+
+## How to build
+
+If you want to build or contribute, first, get the node modules needed (grunt, bower)
 
     npm install
     
