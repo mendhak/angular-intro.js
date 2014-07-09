@@ -1,6 +1,6 @@
 {
   "name": "mendhak/angular-intro.js",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "main": "src/angular-intro.js",
   "description": "Angular directive to wrap intro.js",
   "license": "MIT",
