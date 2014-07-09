@@ -14,28 +14,63 @@ You can install this package through `Bower` by using the following command :
     bower install angular-intro.js --save
 
 
-## Details
+## How to use
 
 The two main directives are `ng-intro-options` and `ng-intro-method`.
 
-`ng-intro-options` needs to point at a `$scope` object which contains the intro.js options. The options are exactly the same as [the original](https://github.com/usablica/intro.js#options).  This also allows you to modify the options as part of your controller behavior if necessary.
+### Setting Options
 
-`ng-intro-method` is a method name that you want to use later.  In other words, put any name in there that doesn't exist on the `$scope` already.  The directive will create a method with that name so that you can call it yourself later.
+`ng-intro-options="IntroOptions"`
 
-For example, if you set `ng-intro-method="CallMe"`, then you can later call `ng-click="CallMe();"` as long as you are still in the same controller scope.  You can also specify a step number in the method call, `CallMe(3);`.
+You should create a `$scope.IntroOptions` in your controller which contains the intro.js options. The options are exactly the same as [the original](https://github.com/usablica/intro.js#options).  This also allows you to modify the options as part of your controller behavior if necessary.  You don't have to use `IntroOptions`, you can specify some other name. 
 
-To start the intro from code, either call `$scope.CallMe();` or set `ng-intro-autostart="true"`.  If the `$scope.CallMe();` doesn't work, it might be because your DOM isn't ready. Put it in a `$timeout`.
+### Start method
 
-There are also directives that link to the intro.js callbacks, namely `ng-intro-oncomplete`, `ng-intro-onexit`, `ng-intro-onchange` `ng-intro-onbeforechange` and `ng-intro-onafterchange`.
+`ng-intro-method="CallMe"` 
+
+The directive will create a method on `$scope.CallMe` so that you can invoke it yourself later.  Make sure the there isn't a method `CallMe` already in your controller.  You don't have to use `CallMe`, you can specify some other name.
+
+### Call the start method
+
+You can invoke it from an event such a click, 
+
+`ng-click="CallMe();"` 
+
+as long as you are still in the same controller scope.  You can also specify a step number in the method call, `CallMe(3);`.
+
+You can start the intro from code, either call `$scope.CallMe();`.  If the `$scope.CallMe();` doesn't work, it might be because your DOM isn't ready. Put it in a `$timeout`.
+
+### Autostart
+
+If you set `ng-intro-autostart="true"`, the intro will start as soon as the directive is ready. 
+
+### Callbacks
+
+Intro.js provides several callbacks.  You can receive these callbacks in your controller.  For example, for the `onchange` event, specify the function name in the directive. 
+
+`ng-intro-onchange="ChangeEvent"`
+
+In your controller, create `ChangeEvent`
+
+    $scope.ChangeEvent = function (targetElement) {
+        console.log("Change Event called");
+        console.log(targetElement);
+    };
+
+The other intro.js callbacks you can specify are `ng-intro-oncomplete`, `ng-intro-onexit`, `ng-intro-onchange` `ng-intro-onbeforechange` and `ng-intro-onafterchange`.
 
 
-## Working with the code
+### Plunker
 
-First, get the node modules needed (grunt, bower)
+You can also use this [sample plunker](http://plnkr.co/edit/wo9EzfbOFjM7NDoAvmjA?p=preview)
+
+## How to build
+
+If you want to build or contribute, first, get the node modules needed (grunt, bower)
 
     npm install
     
-Next, use bower to get the JS libraries needed (intro.js)
+Next, use bower to get the JS libraries needed
 
     node_modules/.bin/bower install
 
