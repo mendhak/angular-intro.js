@@ -60,5 +60,9 @@ app.controller('MyController', function ($scope) {
         doneLabel: 'Thanks'
     };
 
+    $scope.ShouldAutoStart = function() {
+        return false;
+    }
+
 });
 
