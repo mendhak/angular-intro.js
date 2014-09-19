@@ -30,11 +30,15 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
                 intro.setOptions(scope.ngIntroOptions);
 
                 if (scope.ngIntroOncomplete) {
-                    intro.oncomplete(scope.ngIntroOncomplete);
+                    intro.oncomplete(function() {
+                        $timeout(scope.ngIntroOncomplete.bind(this, scope));
+                    });
                 }
 
                 if (scope.ngIntroOnexit) {
-                    intro.onexit(scope.ngIntroOnexit);
+                    intro.onexit(function() {
+                        $timeout(scope.ngIntroOnexit.bind(this, scope));
+                    });
                 }
 
                 if (scope.ngIntroOnchange) {
