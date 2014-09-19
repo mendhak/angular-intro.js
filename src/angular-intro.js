@@ -20,7 +20,7 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
 
                 var intro;
 
-                if(typeof(step) === 'string') {
+                if (typeof(step) === 'string') {
                     intro = introJs(step);
 
                 } else {
@@ -29,42 +29,40 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
 
                 intro.setOptions(scope.ngIntroOptions);
 
-                if(scope.ngIntroOncomplete) {
+                if (scope.ngIntroOncomplete) {
                     intro.oncomplete(scope.ngIntroOncomplete);
                 }
 
-                if(scope.ngIntroOnexit) {
+                if (scope.ngIntroOnexit) {
                     intro.onexit(scope.ngIntroOnexit);
                 }
 
-                if(scope.ngIntroOnchange) {
+                if (scope.ngIntroOnchange) {
                     intro.onchange(function(targetElement){
-                       $timeout(function() { scope.ngIntroOnchange(targetElement)});
+                       $timeout(scope.ngIntroOnchange.bind(this, targetElement, scope));
                     });
                 }
 
-                if(scope.ngIntroOnbeforechange) {
+                if (scope.ngIntroOnbeforechange) {
                     intro.onbeforechange(function(targetElement) {
-                        $timeout(function() {
-                             scope.ngIntroOnbeforechange(targetElement) ;
-                        }, 0);
+                        $timeout(scope.ngIntroOnbeforechange.bind(this, targetElement, scope));
                     });
                 }
 
-                 if(scope.ngIntroOnafterchange) {
-                     intro.onafterchange(function(targetElement){
-                        $timeout(function() { scope.ngIntroOnafterchange(targetElement); });
-                     });
+                if (scope.ngIntroOnafterchange) {
+                    intro.onafterchange(function(targetElement){
+                        $timeout(scope.ngIntroOnafterchange.bind(this, targetElement, scope));
+                    });
                 }
 
-                if(typeof(step) === 'number') {
+                if (typeof(step) === 'number') {
                     intro.goToStep(step).start();
                 } else {
                     intro.start();
                 }
             };
 
-            if(scope.ngIntroAutostart()) {
+            if (scope.ngIntroAutostart()) {
                 $timeout(function() {
                     scope.ngIntroMethod();
                 });
