@@ -2,25 +2,26 @@ var app = angular.module('myApp', ['angular-intro']);
 
 app.controller('MyController', function ($scope) {
 
-    $scope.CompletedEvent = function () {
+    $scope.CompletedEvent = function (scope) {
         console.log("Completed Event called");
     };
 
-    $scope.ExitEvent = function () {
+    $scope.ExitEvent = function (scope) {
         console.log("Exit Event called");
     };
 
-    $scope.ChangeEvent = function (targetElement) {
+    $scope.ChangeEvent = function (targetElement, scope) {
         console.log("Change Event called");
-        console.log(targetElement);
+        console.log(targetElement);  //The target element
+        console.log(this);  //The IntroJS object
     };
 
-    $scope.BeforeChangeEvent = function (targetElement) {
+    $scope.BeforeChangeEvent = function (targetElement, scope) {
         console.log("Before Change Event called");
         console.log(targetElement);
     };
 
-    $scope.AfterChangeEvent = function (targetElement) {
+    $scope.AfterChangeEvent = function (targetElement, scope) {
         console.log("After Change Event called");
         console.log(targetElement);
     };
