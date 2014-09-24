@@ -52,9 +52,10 @@ Intro.js provides several callbacks.  You can receive these callbacks in your co
 
 In your controller, create `ChangeEvent`
 
-    $scope.ChangeEvent = function (targetElement) {
+    $scope.ChangeEvent = function (targetElement, scope) {
         console.log("Change Event called");
-        console.log(targetElement);
+        console.log(targetElement); //The target element
+        console.log(this); //The IntroJS object
     };
 
 The other intro.js callbacks you can specify are `ng-intro-oncomplete`, `ng-intro-onexit`, `ng-intro-onchange` `ng-intro-onbeforechange` and `ng-intro-onafterchange`.
