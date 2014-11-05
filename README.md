@@ -44,6 +44,10 @@ You can start the intro from code, either call `$scope.CallMe();`.  If the `$sco
 
 If you set `ng-intro-autostart="true"`, the intro will start as soon as the directive is ready. 
 
+### Autorefresh
+
+If an intro tour includes dynamic content, use `ng-intro-autorefresh="true"` to call Intro.js' refresh method.
+
 ### Callbacks
 
 Intro.js provides several callbacks.  You can receive these callbacks in your controller.  For example, for the `onchange` event, specify the function name in the directive. 
