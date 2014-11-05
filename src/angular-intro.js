@@ -13,7 +13,8 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
             ngIntroOnchange: '=',
             ngIntroOnbeforechange: '=',
             ngIntroOnafterchange: '=',
-            ngIntroAutostart: '&'
+            ngIntroAutostart: '&',
+            ngAutoRefresh: '='
         },
         link: function(scope, element, attrs) {
             scope.ngIntroMethod = function(step) {
@@ -28,7 +29,13 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
                 }
 
                 intro.setOptions(scope.ngIntroOptions);
-
+                
+                if (scope.ngAutoRefresh) {
+                  scope.$watch(function(){
+                    intro.refresh();
+                  });
+                }
+                
                 if (scope.ngIntroOncomplete) {
                     intro.oncomplete(function() {
                         $timeout(scope.ngIntroOncomplete.bind(this, scope));
