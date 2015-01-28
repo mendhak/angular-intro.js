@@ -13,12 +13,16 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
             ngIntroOnchange: '=',
             ngIntroOnbeforechange: '=',
             ngIntroOnafterchange: '=',
-            ngIntroAutostart: '&'
+            ngIntroAutostart: '&',
+            ngIntroAutorefresh: '='
         },
         link: function(scope, element, attrs) {
             scope.ngIntroMethod = function(step) {
 
                 var intro;
+                var navigationWatch = scope.$on('$locationChangeStart', function(){
+                  intro.exit();
+                });
 
                 if (typeof(step) === 'string') {
                     intro = introJs(step);
@@ -28,16 +32,24 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
                 }
 
                 intro.setOptions(scope.ngIntroOptions);
-
+                
+                if (scope.ngIntroAutorefresh) {
+                  scope.$watch(function(){
+                    intro.refresh();
+                  });
+                }
+                
                 if (scope.ngIntroOncomplete) {
                     intro.oncomplete(function() {
                         $timeout(scope.ngIntroOncomplete.bind(this, scope));
+                        navigationWatch();
                     });
                 }
 
                 if (scope.ngIntroOnexit) {
                     intro.onexit(function() {
                         $timeout(scope.ngIntroOnexit.bind(this, scope));
+                        navigationWatch();
                     });
                 }
 
