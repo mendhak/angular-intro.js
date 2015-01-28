@@ -20,6 +20,9 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
             scope.ngIntroMethod = function(step) {
 
                 var intro;
+                var navigationWatch = scope.$on('$locationChangeStart', function(){
+                  intro.exit();
+                });
 
                 if (typeof(step) === 'string') {
                     intro = introJs(step);
@@ -39,12 +42,14 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
                 if (scope.ngIntroOncomplete) {
                     intro.oncomplete(function() {
                         $timeout(scope.ngIntroOncomplete.bind(this, scope));
+                        navigationWatch();
                     });
                 }
 
                 if (scope.ngIntroOnexit) {
                     intro.onexit(function() {
                         $timeout(scope.ngIntroOnexit.bind(this, scope));
+                        navigationWatch();
                     });
                 }
 
