@@ -64,6 +64,13 @@ In your controller, create `ChangeEvent`
 
 The other intro.js callbacks you can specify are `ng-intro-oncomplete`, `ng-intro-onexit`, `ng-intro-onchange` `ng-intro-onbeforechange` and `ng-intro-onafterchange`.
 
+### Exit Method
+
+`ng-intro-exit-method="ExitMe"`
+
+Then in your controller, you can force exit using
+
+`$scope.ExitMe(function() { //callback } );`
 
 ### Plunker
 
