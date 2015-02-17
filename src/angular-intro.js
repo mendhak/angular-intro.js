@@ -7,7 +7,7 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
         restrict: 'A',
         scope: {
             ngIntroMethod: "=",
-            ngIntroExitMethod: "=",
+            ngIntroExitMethod: "=?",
             ngIntroOptions: '=',
             ngIntroOncomplete: '=',
             ngIntroOnexit: '=',
@@ -90,7 +90,7 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
             scope.ngIntroExitMethod = function (callback) {
                 intro.exit();
                 callback();
-            }
+            };
 
             if (scope.ngIntroAutostart()) {
                 $timeout(function() {
