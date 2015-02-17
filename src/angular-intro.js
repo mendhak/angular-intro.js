@@ -41,33 +41,38 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
                 
                 if (scope.ngIntroOncomplete) {
                     intro.oncomplete(function() {
-                        $timeout(scope.ngIntroOncomplete.bind(this, scope));
+                        scope.ngIntroOncomplete.call(this, scope);
+                        $timeout(function() {scope.$digest()});
                         navigationWatch();
                     });
                 }
 
                 if (scope.ngIntroOnexit) {
                     intro.onexit(function() {
-                        $timeout(scope.ngIntroOnexit.bind(this, scope));
+                        scope.ngIntroOnexit.call(this, scope);
+                        $timeout(function() {scope.$digest()});
                         navigationWatch();
                     });
                 }
 
                 if (scope.ngIntroOnchange) {
                     intro.onchange(function(targetElement){
-                       $timeout(scope.ngIntroOnchange.bind(this, targetElement, scope));
+                        scope.ngIntroOnchange.call(this, targetElement, scope);
+                        $timeout(function() {scope.$digest()});
                     });
                 }
 
                 if (scope.ngIntroOnbeforechange) {
                     intro.onbeforechange(function(targetElement) {
-                        $timeout(scope.ngIntroOnbeforechange.bind(this, targetElement, scope));
+                        scope.ngIntroOnbeforechange.call(this, targetElement, scope);
+                        $timeout(function() {scope.$digest()});
                     });
                 }
 
                 if (scope.ngIntroOnafterchange) {
                     intro.onafterchange(function(targetElement){
-                        $timeout(scope.ngIntroOnafterchange.bind(this, targetElement, scope));
+                        scope.ngIntroOnafterchange.call(this, targetElement, scope);
+                        $timeout(function() {scope.$digest()});
                     });
                 }
 
