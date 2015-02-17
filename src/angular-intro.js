@@ -7,6 +7,7 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
         restrict: 'A',
         scope: {
             ngIntroMethod: "=",
+            ngIntroExitMethod: "=",
             ngIntroOptions: '=',
             ngIntroOncomplete: '=',
             ngIntroOnexit: '=',
@@ -17,9 +18,12 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
             ngIntroAutorefresh: '='
         },
         link: function(scope, element, attrs) {
+
+            var intro;
+
             scope.ngIntroMethod = function(step) {
 
-                var intro;
+                
                 var navigationWatch = scope.$on('$locationChangeStart', function(){
                   intro.exit();
                 });
@@ -82,6 +86,11 @@ ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
                     intro.start();
                 }
             };
+
+            scope.ngIntroExitMethod = function (callback) {
+                intro.exit();
+                callback();
+            }
 
             if (scope.ngIntroAutostart()) {
                 $timeout(function() {
