@@ -25,7 +25,7 @@
                 ngIntroOnchange: '=',
                 ngIntroOnbeforechange: '=',
                 ngIntroOnafterchange: '=',
-                ngIntroAutostart: '&',
+                ngIntroAutostart: '=',
                 ngIntroAutorefresh: '='
             },
             link: function(scope, element, attrs) {
@@ -103,7 +103,7 @@
                     callback();
                 };
 
-                if (scope.ngIntroAutostart()) {
+                if (scope.ngIntroAutostart) {
                     $timeout(function() {
                         scope.ngIntroMethod();
                     });
