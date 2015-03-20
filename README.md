@@ -28,7 +28,7 @@ You should create a `$scope.IntroOptions` in your controller which contains the 
 
 `ng-intro-method="CallMe"` 
 
-The directive will create a method on `$scope.CallMe` so that you can invoke it yourself later.  Make sure the there isn't a method `CallMe` already in your controller.  You don't have to use `CallMe`, you can specify some other name.
+The directive will create a method on `$scope.CallMe` so that you can invoke it yourself later.  Make sure the there isn't a method `CallMe` already in your controller. To use the method be sure to wrap it with `$timeout`. You don't have to use `CallMe`, you can specify some other name.
 
 ### Call the start method
 
