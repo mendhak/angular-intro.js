@@ -103,11 +103,14 @@
                     callback();
                 };
 
-                if (scope.ngIntroAutostart) {
-                    $timeout(function() {
-                        scope.ngIntroMethod();
-                    });
-                }
+                var autoStartWatch = scope.$watch('ngIntroAutostart', function (){
+                    if(scope.ngIntroAutostart){
+                        $timeout(function() {
+                            scope.ngIntroMethod();
+                        });
+                    }
+                    autoStartWatch();
+                });
             }
         };
     }]);
