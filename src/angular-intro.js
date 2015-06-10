@@ -100,11 +100,11 @@
                     }
                 };
 
-                scope.ngIntroNextMethod = function (callback) {
+                scope.ngIntroNextMethod = function () {
                     intro.nextStep();
                 }
 
-                scope.ngIntroPreviousMethod = function (callback) {
+                scope.ngIntroPreviousMethod = function () {
                     intro.previousStep();
                 }
 
