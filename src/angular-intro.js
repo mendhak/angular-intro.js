@@ -19,6 +19,8 @@
             scope: {
                 ngIntroMethod: "=",
                 ngIntroExitMethod: "=?",
+                ngIntroNextMethod: "=?",
+                ngIntroPreviousMethod: "=?",
                 ngIntroOptions: '=',
                 ngIntroOncomplete: '=',
                 ngIntroOnexit: '=',
@@ -97,6 +99,14 @@
                         intro.start();
                     }
                 };
+
+                scope.ngIntroNextMethod = function (callback) {
+                    intro.nextStep();
+                }
+
+                scope.ngIntroPreviousMethod = function (callback) {
+                    intro.previousStep();
+                }
 
                 scope.ngIntroExitMethod = function (callback) {
                     intro.exit();
