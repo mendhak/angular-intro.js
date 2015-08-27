@@ -121,6 +121,11 @@
                     }
                     autoStartWatch();
                 });
+
+                scope.$on('$locationChangeSuccess', function() {
+                    if (typeof intro !== 'undefined')
+                        intro.exit();
+                });
             }
         };
     }]);
