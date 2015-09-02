@@ -395,11 +395,15 @@ Want to learn faster and easier? Here we have **Instant IntroJs**, Packt Publish
   <a target='_blank' href="http://www.packtpub.com/create-useful-introductions-for-websites-and-applications-with-introjs-library/book">Buy and Download</a>
 </p>
 
-## Roadmap
-- Provide more examples
-- Add more templates
-
 ## Release History
+
+ * **v1.1.0** - 2014-10-17
+   - Fix no interaction bug
+   - Fix recursion bug with jQuery
+   - Call `onexit` on pressing Esc or clicking on the overlay layer
+   - Fix helper layer positioning issue when the content changes
+   - Fix transform is 'undefined' in IE 8
+   - Fix coding style issues
 
  * **v1.0.0** - 2014-10-17
    - Auto-positioning feature for tooltip box
