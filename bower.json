@@ -13,7 +13,7 @@
   ],
   "dependencies": {
     "angular": "~1.2.x",
-    "intro.js": "1.0.0"
+    "intro.js": "1.1.0"
   },
   "devDependencies": {}
 }
