@@ -90,11 +90,11 @@ Then, whenever you make any changes, get grunt to build the minified angular-int
 
     node_modules/.bin/grunt 
 
-If you want to view the demo page to make sure everything's working, the quickest way is to start a web server
+Finally, view the demo page to make sure everything's working; start a web server:
 
-    python -m SimpleHTTPServer
+    ./node_modules/.bin/grunt connect:server
     
-And browse to `http://localhost:8000/example/index.html`   
+And browse to `http://localhost:8000/example/index.html`
 
 
 

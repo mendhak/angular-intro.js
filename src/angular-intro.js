@@ -19,6 +19,8 @@
             scope: {
                 ngIntroMethod: "=",
                 ngIntroExitMethod: "=?",
+                ngIntroNextMethod: "=?",
+                ngIntroPreviousMethod: "=?",
                 ngIntroOptions: '=',
                 ngIntroOncomplete: '=',
                 ngIntroOnexit: '=',
@@ -98,6 +100,14 @@
                     }
                 };
 
+                scope.ngIntroNextMethod = function () {
+                    intro.nextStep();
+                }
+
+                scope.ngIntroPreviousMethod = function () {
+                    intro.previousStep();
+                }
+
                 scope.ngIntroExitMethod = function (callback) {
                     intro.exit();
                     callback();
@@ -110,6 +120,11 @@
                         });
                     }
                     autoStartWatch();
+                });
+
+                scope.$on('$locationChangeSuccess', function() {
+                    if (typeof intro !== 'undefined')
+                        intro.exit();
                 });
             }
         };

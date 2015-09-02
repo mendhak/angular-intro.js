@@ -1,7 +1,24 @@
 module.exports = function(grunt) {
 
+    grunt.loadNpmTasks('grunt-contrib-connect');
+
+
     // Project configuration.
     grunt.initConfig({
+
+
+        connect: {
+            server: {
+                options: {
+                port: 8000,
+                base: '.',
+                keepalive: true
+                }
+            }
+        }
+
+        ,
+
         pkg: grunt.file.readJSON('package.json'),
         uglify: {
             options: {
