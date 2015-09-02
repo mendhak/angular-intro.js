@@ -7,7 +7,8 @@
         root.angularIntroJs = factory(root.angular, root.introJs);
     }
 }(this, function (angular, introJs) {
-    introJs=introJs.introJs;
+    if(typeof introJs == 'object')
+        introJs=introJs.introJs;
 
     var ngIntroDirective = angular.module('angular-intro', []);
 
