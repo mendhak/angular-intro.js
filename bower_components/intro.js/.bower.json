@@ -12,14 +12,14 @@
     "intro.js",
     "introjs.css"
   ],
-  "version": "1.1.0",
-  "_release": "1.1.0",
+  "version": "1.1.1",
+  "_release": "1.1.1",
   "_resolution": {
     "type": "version",
-    "tag": "1.1.0",
-    "commit": "5b162a5ed21145032b6f2fd62dc07f84a3a060e9"
+    "tag": "v1.1.1",
+    "commit": "c7f9b6e83a9b36d477102922d0a6b441299e3951"
   },
   "_source": "git://github.com/usablica/intro.js.git",
-  "_target": "1.1.0",
+  "_target": "~1.1.1",
   "_originalSource": "intro.js"
 }
