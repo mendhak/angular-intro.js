@@ -60,7 +60,7 @@
                     if (scope.ngIntroOncomplete) {
                         intro.oncomplete(function() {
                             scope.ngIntroOncomplete.call(this, scope);
-                            $timeout(function() {scope.$digest()});
+                            $timeout(function() {scope.$digest();});
                             navigationWatch();
                         });
                     }
@@ -68,7 +68,7 @@
                     if (scope.ngIntroOnexit) {
                         intro.onexit(function() {
                             scope.ngIntroOnexit.call(this, scope);
-                            $timeout(function() {scope.$digest()});
+                            $timeout(function() {scope.$digest();});
                             navigationWatch();
                         });
                     }
@@ -76,21 +76,21 @@
                     if (scope.ngIntroOnchange) {
                         intro.onchange(function(targetElement){
                             scope.ngIntroOnchange.call(this, targetElement, scope);
-                            $timeout(function() {scope.$digest()});
+                            $timeout(function() {scope.$digest();});
                         });
                     }
 
                     if (scope.ngIntroOnbeforechange) {
                         intro.onbeforechange(function(targetElement) {
                             scope.ngIntroOnbeforechange.call(this, targetElement, scope);
-                            $timeout(function() {scope.$digest()});
+                            $timeout(function() {scope.$digest();});
                         });
                     }
 
                     if (scope.ngIntroOnafterchange) {
                         intro.onafterchange(function(targetElement){
                             scope.ngIntroOnafterchange.call(this, targetElement, scope);
-                            $timeout(function() {scope.$digest()});
+                            $timeout(function() {scope.$digest();});
                         });
                     }
 
@@ -103,11 +103,11 @@
 
                 scope.ngIntroNextMethod = function () {
                     intro.nextStep();
-                }
+                };
 
                 scope.ngIntroPreviousMethod = function () {
                     intro.previousStep();
-                }
+                };
 
                 scope.ngIntroExitMethod = function (callback) {
                     intro.exit();
