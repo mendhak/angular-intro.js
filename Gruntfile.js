@@ -32,12 +32,12 @@ module.exports = function(grunt) {
         jshint: {
             lib: {
                 options: {},
-                src: ['lib/*.js']
+                src: ['src/*.js']
             },
         },
         watch: {
             scripts: {
-                files: 'lib/*.js',
+                files: 'src/*.js',
                 tasks: ['jshint', 'uglify'],
                 options: {
                     interrupt: true
@@ -54,4 +54,7 @@ module.exports = function(grunt) {
 
     // Default task(s).
     grunt.registerTask('default', ['jshint', 'uglify']);
+    
+    // Test
+    grunt.registerTask('test', ['jshint']);
 };
