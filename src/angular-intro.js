@@ -1,8 +1,8 @@
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
-        define(["angular", "intro"], factory);
+        define(["angular", "intro.js"], factory);
     } else if (typeof exports === 'object') {
-        module.exports = factory(require('angular'), require('intro'));
+        module.exports = factory(require('angular'), require('intro.js'));
     } else {
         root.angularIntroJs = factory(root.angular, root.introJs);
     }
@@ -145,5 +145,3 @@
     return ngIntroDirective;
 
 }));
-
-
