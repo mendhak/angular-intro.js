@@ -1,8 +1,8 @@
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
-        define(["angular", "intro"], factory);
+        define(["angular", "intro.js"], factory);
     } else if (typeof exports === 'object') {
-        module.exports = factory(require('angular'), require('intro'));
+        module.exports = factory(require('angular'), require('intro.js'));
     } else {
         root.angularIntroJs = factory(root.angular, root.introJs);
     }
@@ -34,11 +34,13 @@
             link: function(scope, element, attrs) {
 
                 var intro;
+                var refreshWatch;
+                var navigationWatch;
 
                 scope.ngIntroMethod = function(step) {
 
 
-                    var navigationWatch = scope.$on('$locationChangeStart', function(){
+                    navigationWatch = scope.$on('$locationChangeStart', function(){
                       intro.exit();
                     });
 
@@ -52,7 +54,7 @@
                     intro.setOptions(scope.ngIntroOptions);
 
                     if (scope.ngIntroAutorefresh) {
-                      scope.$watch(function(){
+                      refreshWatch = scope.$watch(function(){
                         intro.refresh();
                       });
                     }
@@ -61,7 +63,7 @@
                         intro.oncomplete(function() {
                             scope.ngIntroOncomplete.call(this, scope);
                             $timeout(function() {scope.$digest();});
-                            navigationWatch();
+                            clearWatches();
                         });
                     }
 
@@ -69,7 +71,7 @@
                         intro.onexit(function() {
                             scope.ngIntroOnexit.call(this, scope);
                             $timeout(function() {scope.$digest();});
-                            navigationWatch();
+                            clearWatches();
                         });
                     }
 
@@ -114,7 +116,7 @@
                     callback();
                 };
 
-                var autoStartWatch = scope.$watch('ngIntroAutostart', function (){
+                var autoStartWatch = scope.$watch('ngIntroAutostart', function () {
                     if(scope.ngIntroAutostart){
                         $timeout(function() {
                             scope.ngIntroMethod();
@@ -127,6 +129,15 @@
                     if (typeof intro !== 'undefined')
                         intro.exit();
                 });
+
+                var clearWatches = function() {
+                    if(navigationWatch) navigationWatch();
+                    if(refreshWatch) refreshWatch();
+                };
+
+                scope.$on('$destroy', function() {
+                    clearWatches();
+                });
             }
         };
     }]);
@@ -134,5 +145,3 @@
     return ngIntroDirective;
 
 }));
-
-

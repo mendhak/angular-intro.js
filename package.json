@@ -4,8 +4,7 @@
   "description": "Angular directive to wrap intro.js",
   "main": "src/angular-intro.js",
   "directories": {
-    "example": "example",
-    "lib": "lib"
+    "example": "example"
   },
   "scripts": {
     "test": "grunt test"
