@@ -25,7 +25,7 @@ You can use this package in your webpack project, first by including `intro.js` 
 
   import ngIntro from 'angular-intro.js';
 
-This project will return you the hole angular module so if you want to use as a dependency in your own angular module you would need to reference the name `ngIntro.name`.
+This project will return the whole angular module so if you want to use as a dependency in your own angular module you would need to reference the name `ngIntro.name`.
 
 ## How to use
 
