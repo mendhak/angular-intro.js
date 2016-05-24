@@ -113,7 +113,8 @@
 
                 scope.ngIntroExitMethod = function (callback) {
                     intro.exit();
-                    callback();
+                    if (typeof callback === 'function')
+                        callback();
                 };
 
                 var autoStartWatch = scope.$watch('ngIntroAutostart', function () {
