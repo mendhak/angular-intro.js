@@ -22,6 +22,7 @@
                 ngIntroExitMethod: "=?",
                 ngIntroNextMethod: "=?",
                 ngIntroPreviousMethod: "=?",
+                ngIntroRefreshMethod: "=?",
                 ngIntroOptions: '=',
                 ngIntroOncomplete: '=',
                 ngIntroOnexit: '=',
@@ -116,6 +117,10 @@
                     if (typeof callback === 'function'){
                         callback();
                     }
+                };
+
+                scope.ngIntroRefreshMethod = function () {
+                    intro.refresh();
                 };
 
                 var autoStartWatch = scope.$watch('ngIntroAutostart', function () {
