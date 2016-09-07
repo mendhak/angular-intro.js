@@ -12,6 +12,10 @@
 
     var ngIntroDirective = angular.module('angular-intro', []);
 
+    function IntroJsNotAvailable () {
+       this.message = 'Intro.js is not available. Make sure it is properly loaded.';
+       this.name = 'IntroJsNotAvailable';
+    }
 
     ngIntroDirective.directive('ngIntroOptions', ['$timeout', function ($timeout) {
 
@@ -40,6 +44,9 @@
 
                 scope.ngIntroMethod = function(step) {
 
+                    if (typeof(introJs) !== 'function') {
+                        throw new IntroJsNotAvailable();
+                    }
 
                     navigationWatch = scope.$on('$locationChangeStart', function(){
                       intro.exit();
