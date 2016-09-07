@@ -2,11 +2,8 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-connect');
 
-
     // Project configuration.
     grunt.initConfig({
-
-
         connect: {
             server: {
                 options: {
@@ -15,10 +12,7 @@ module.exports = function(grunt) {
                 keepalive: true
                 }
             }
-        }
-
-        ,
-
+        },
         pkg: grunt.file.readJSON('package.json'),
         uglify: {
             options: {
@@ -34,7 +28,7 @@ module.exports = function(grunt) {
             lib: {
                 options: {},
                 src: ['src/*.js']
-            },
+            }
         },
         watch: {
             scripts: {
@@ -42,12 +36,12 @@ module.exports = function(grunt) {
                 tasks: ['jshint', 'uglify'],
                 options: {
                     interrupt: true
-                },
+                }
             },
             gruntfile: {
                 files: 'Gruntfile.js'
             }
-        },
+        }
     });
 
     // Load all grunt tasks
