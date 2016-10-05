@@ -35,7 +35,7 @@ The two main directives are `ng-intro-options` and `ng-intro-method`.
 
 `ng-intro-options="IntroOptions"`
 
-You should create a `$scope.IntroOptions` in your controller which contains the intro.js options. The options are exactly the same as [the original](https://github.com/usablica/intro.js#options).  This also allows you to modify the options as part of your controller behavior if necessary.  You don't have to use `IntroOptions`, you can specify some other name.
+You should create a `$scope.IntroOptions` in your controller which contains the intro.js options. The options are exactly the same as [the original](https://github.com/usablica/intro.js/wiki/Documentation#options).  This also allows you to modify the options as part of your controller behavior if necessary.  You don't have to use `IntroOptions`, you can specify some other name.
 
 ### Start method
 
