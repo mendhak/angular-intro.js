@@ -34,7 +34,16 @@
                 ngIntroOnbeforechange: '=',
                 ngIntroOnafterchange: '=',
                 ngIntroAutostart: '=',
-                ngIntroAutorefresh: '='
+                ngIntroAutorefresh: '=',
+
+                ngIntroHintsMethod: "=?",
+                ngIntroOnhintsadded: "=",
+                ngIntroOnhintsclicked: "=?",
+                ngIntroOnhintclose: "=?",
+                ngIntroShowHint: "=?",
+                ngIntroShowHints: "=?",
+                ngIntroHideHint: "=?",
+                ngIntroHideHints: "=?"
             },
             link: function(scope, element, attrs) {
 
@@ -111,6 +120,48 @@
                     }
                 };
 
+                scope.ngIntroHintsMethod = function() {
+                    if (typeof(introJs) !== 'function') {
+                        throw new IntroJsNotAvailable();
+                    }
+
+                    navigationWatch = scope.$on('$locationChangeStart', function(){
+                      intro.exit();
+                    });
+
+                    if (typeof(step) === 'string') {
+                        intro = introJs(step);
+
+                    } else {
+                        intro = introJs();
+                    }
+
+                    intro.setOptions(scope.ngIntroOptions);
+
+                    if(scope.ngIntroOnhintsadded) {
+                        intro.onhintsadded(function() {
+                            scope.ngIntroOnhintsadded.call(this, scope);
+                            $timeout(function() {scope.$digest();});
+                        });
+                    }
+
+                    if(scope.ngIntroOnhintclick) {
+                        intro.onhintclick(function(hintElement, item, stepId) {
+                            scope.ngIntroOnhintclick.call(this, hintElement, hintElement, item, stepId, scope);
+                            $timeout(function() {scope.$digest();});
+                        });
+                    }
+                    
+                    if(scope.ngIntroOnhintclose) {
+                        intro.onhintclose(function (stepId) {
+                            scope.ngIntroOnhintclose.call(this, stepId, scope);
+                            $timeout(function() {scope.$digest();});
+                        });
+                    }
+                    
+                    intro.addHints();
+                };
+
                 scope.ngIntroNextMethod = function () {
                     intro.nextStep();
                 };
@@ -128,6 +179,22 @@
 
                 scope.ngIntroRefreshMethod = function () {
                     intro.refresh();
+                };
+
+                scope.ngIntroShowHint = function(id) {
+                    intro.showHint(id);
+                };
+
+                scope.ngIntroShowHints = function() {
+                    intro.showHints();
+                };
+
+                scope.ngIntroHideHint = function(id) {
+                    intro.hideHint(id);
+                };
+
+                scope.ngIntroHideHints = function() {
+                    intro.hideHints();
                 };
 
                 var autoStartWatch = scope.$watch('ngIntroAutostart', function () {
