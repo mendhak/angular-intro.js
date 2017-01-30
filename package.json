@@ -1,6 +1,6 @@
 {
   "name": "angular-intro.js",
-  "version": "2.1.1",
+  "version": "2.1.3",
   "description": "Angular directive to wrap intro.js",
   "main": "src/angular-intro.js",
   "directories": {
