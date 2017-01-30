@@ -114,4 +114,4 @@ And browse to `http://localhost:8000/example/index.html`
 
 ## License
 
-As with intro.js, this is under the [MIT license](https://github.com/mendhak/angular-intro.js/blob/master/LICENSE).
+Same as intro.js, this is [AGPL](LICENSE)
