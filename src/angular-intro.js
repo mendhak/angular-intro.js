@@ -38,7 +38,7 @@
 
                 ngIntroHintsMethod: "=?",
                 ngIntroOnhintsadded: "=",
-                ngIntroOnhintsclicked: "=?",
+                ngIntroOnhintclick: "=?",
                 ngIntroOnhintclose: "=?",
                 ngIntroShowHint: "=?",
                 ngIntroShowHints: "=?",
