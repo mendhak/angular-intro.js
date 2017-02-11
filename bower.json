@@ -1,6 +1,6 @@
 {
   "name": "angular-intro.js",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "main": "src/angular-intro.js",
   "description": "Angular directive to wrap intro.js",
   "license": "MIT",
