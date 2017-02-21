@@ -29,17 +29,21 @@ This project will return the whole angular module so if you want to use as a dep
 
 ## How to use
 
-The two main directives are `ng-intro-options` and `ng-intro-method`.
+You can use the two main directives, which are `ng-intro-options` and `ng-intro-method`,  or you can include the service called `ngIntroService`
 
 ### Setting Options
 
-`ng-intro-options="IntroOptions"`
+**As a directive** - `ng-intro-options="IntroOptions"`
+
+**As a service** - `ngIntroService.setOptions(IntroOptions)`
 
 You should create a `$scope.IntroOptions` in your controller which contains the intro.js options. The options are exactly the same as [the original](https://github.com/usablica/intro.js/wiki/Documentation#options).  This also allows you to modify the options as part of your controller behavior if necessary.  You don't have to use `IntroOptions`, you can specify some other name.
 
 ### Start method
 
-`ng-intro-method="CallMe"`
+**As a directive** -  `ng-intro-method="CallMe"`
+
+**As a service** - `ngIntroService.start()`
 
 The directive will create a method on `$scope.CallMe` so that you can invoke it yourself later.  Make sure the there isn't a method `CallMe` already in your controller. To use the method be sure to wrap it with `$timeout`. You don't have to use `CallMe`, you can specify some other name.
 
@@ -61,9 +65,11 @@ If you set `ng-intro-autostart="true"`, the intro will start as soon as the dire
 
 If an intro tour includes dynamic content, use `ng-intro-autorefresh="true"` to call Intro.js' refresh method.
 
-### Callbacks
+## Callbacks
 
 Intro.js provides several callbacks.  You can receive these callbacks in your controller.  For example, for the `onchange` event, specify the function name in the directive.
+
+### As a directive
 
 `ng-intro-onchange="ChangeEvent"`
 
@@ -77,17 +83,61 @@ In your controller, create `ChangeEvent`
 
 The other intro.js callbacks you can specify are `ng-intro-oncomplete`, `ng-intro-onexit`, `ng-intro-onchange` `ng-intro-onbeforechange` and `ng-intro-onafterchange`.
 
+### As a service
+
+There are two ways of make use of callbacks:
+
+**Using promises**
+
+The methods that return promises: 
+
+* `onComplete`
+* `onExit`
+* `onBeforeChange`
+* `onAfterChange`
+* `onChange`
+
+**Using watches (not recommended, available for compatibility)**
+
+    `scope.$on('ngIntro-onAfterChange', function () {
+    ngIntro.exit();
+    ´
+ Its triggers are:
+ 
+* `ngIntro-onComplete`
+* `ngIntro-onBeforeChange`
+* `ngIntro-onChange`
+* `ngIntro-onAfterChange`
+* `ngIntro-onExit`
+
+* `ngIntro-onHintclick`
+* `ngIntro-onHintclose`
+* `ngIntro-onHintsAdded`
+
+
+
+
 ### Exit Method
 
-`ng-intro-exit-method="ExitMe"`
+**Directive** - `ng-intro-exit-method="ExitMe"`
+**Callback** - `$scope.ExitMe(function() { //callback } );`
 
-Then in your controller, you can force exit using
+You can also call `$scope.ExitMe()` from your controller. 
 
-`$scope.ExitMe(function() { //callback } );`
+
+**Service** - `ngIntroService.exit()`
+**Callback** - `ngIntroService.onExit().then(function(){
+  console.log('do something.')
+});`
+
 
 ### Plunker
 
-You can also use this [sample plunker](http://plnkr.co/edit/wo9EzfbOFjM7NDoAvmjA?p=preview)
+You may use as Directive [as shown here](http://plnkr.co/edit/wo9EzfbOFjM7NDoAvmjA?p=preview)
+
+or
+
+alternatively  as Service [as shown here](http://plnkr.co/edit/4JdONL)
 
 ## How to build
 
