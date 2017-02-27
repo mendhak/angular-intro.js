@@ -33,18 +33,24 @@
 
 		    <div class="jumbotron">
 		        <h1 id="step1">Angular Intro.js</h1>
-		        <p id="step4" class="lead">AngularJS directives for <a href="http://usablica.github.io/intro.js/" onclick="window.open(this.href);return false;">intro.js</a></p>
-		        <a class="btn btn-large btn-success" ng-click="CallMe();">Demo</a>
-		        <a class="btn btn-large btn-success" ng-click="CallMe(3);">Start at step 3</a>
+		        <p id="step4" class="lead">AngularJS service and directives for <a href="http://usablica.github.io/intro.js/" onclick="window.open(this.href);return false;">intro.js</a></p>
+		        <a  ng-intro-disable-button class="btn btn-large btn-success" ng-click="CallMe();">Demo</a>
+		        <a  ng-intro-disable-button class="btn btn-large btn-success" ng-click="CallMe(3);">Start at step 3</a>
+		        
+		        <a style="z-index: 100000002;position: relative;" class="btn btn-large btn-success" ng-click="clearAndStartNewIntro();">Replace current intro using the service</a>
+					
 		    </div>
 
 		    <div class="row-fluid marketing">
 		        <div id="step2" class="span6">
 		            <h4>Setup</h4>
 		            <p>Include the JS and CSS files for intro.js, and angular-intro.min.js.  Add the module <code>angular-intro</code> to your app declaration.</p>
-
+                <p>Include in your controller: <code>ngIntroService</code>.</p>
+                
+                
 		            <h4>Options</h4>
-		            <p>Set the options like so: <code>ng-intro-options="IntroOptions"</code>. Define <code>$scope.IntroOptions</code> in your controller.  The format is exactly the same as the <a href="https://github.com/usablica/intro.js#options">original</a>.</p>
+		            
+		            <p><b>Not required, but both works well together</b><br>Set the options like so: <code>ng-intro-options="IntroOptions"</code>. Define <code>$scope.IntroOptions</code> in your controller.  The format is exactly the same as the <a href="https://github.com/usablica/intro.js#options">original</a>.</p>
 
 		            <h4>Method name</h4>
 		            <p>Pick a method name, <code>ng-intro-method="CallMe"</code>. You can invoke the intro from elsewhere by calling <code>CallMe();</code>.  You can also specify a step number using <code>CallMe(3);</code>. To autostart, use <code>ng-intro-autostart="true"</code></p>
@@ -57,11 +63,19 @@
 
 		        <div id="step3" class="span6">
 		            <h4><a href="https://github.com/mendhak/angular-intro.js/tree/master/example">Example</a></h4>
-		            <p>Set the options and method name:
+		            <p>[using Directives]Set the options and method name:
 		               <pre>
 &lt;div ng-controller="MyController"
      ng-intro-options="IntroOptions"
      ng-intro-method="CallMe" ...
+    
+		               </pre>
+		            </p>
+ <p>[using Controller] Set the options and start :
+		               <pre>
+var introOptions = {};
+ngIntroService.clear();
+ngIntroService.setOptions(introOptions);
 		               </pre>
 		            </p>
 
@@ -85,6 +99,7 @@ steps:[
 		            <p>Call it either way
 		                <pre>&lt;button ng-click="CallMe();"&gt;Go&lt;/button&gt;</pre>
 		                <pre>$scope.CallMe();</pre>
+		                <pre>[service]ngIntroService.start();</pre>
 		            </p>
 
 		             </div>
