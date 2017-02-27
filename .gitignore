@@ -2,3 +2,8 @@ bower_components/
 .idea/
 node_modules
 *.iml
+typings/
+*.map
+*.js
+src/*.js
+.tscache/

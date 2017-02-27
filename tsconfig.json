@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "none",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "target": "es5",
+    "declaration": true,
+    "declarationDir": "build"
+
+  },
+  "include": [
+    "src/**/*"
+  ]
+}
