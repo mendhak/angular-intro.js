@@ -293,19 +293,19 @@
                 };
                 
                 scope.ngIntroShowHint = function(id) {
-                    intro.showHint(id);
+                    ngIntro.showHint(id);
                 };
 
                 scope.ngIntroShowHints = function() {
-                    intro.showHints();
+                    ngIntro.showHints();
                 };
 
                 scope.ngIntroHideHint = function(id) {
-                    intro.hideHint(id);
+                    ngIntro.hideHint(id);
                 };
 
                 scope.ngIntroHideHints = function() {
-                    intro.hideHints();
+                    ngIntro.hideHints();
                 };
 
 				scope.ngIntroNextMethod = function () {
