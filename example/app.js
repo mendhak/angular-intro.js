@@ -1,30 +1,6 @@
 var app = angular.module('myApp', ['angular-intro']);
 
-app.controller('MyController', function ($scope) {
-
-    $scope.CompletedEvent = function (scope) {
-        console.log("Completed Event called");
-    };
-
-    $scope.ExitEvent = function (scope) {
-        console.log("Exit Event called");
-    };
-
-    $scope.ChangeEvent = function (targetElement, scope) {
-        console.log("Change Event called");
-        console.log(targetElement);  //The target element
-        console.log(this);  //The IntroJS object
-    };
-
-    $scope.BeforeChangeEvent = function (targetElement, scope) {
-        console.log("Before Change Event called");
-        console.log(targetElement);
-    };
-
-    $scope.AfterChangeEvent = function (targetElement, scope) {
-        console.log("After Change Event called");
-        console.log(targetElement);
-    };
+app.controller('MyController', function ($scope,ngIntroService)  {
 
     $scope.IntroOptions = {
         steps:[
@@ -53,15 +29,99 @@ app.controller('MyController', function ($scope) {
         }
         ],
         showStepNumbers: false,
+        showBullets: false,
         exitOnOverlayClick: true,
         exitOnEsc:true,
-        nextLabel: '<strong>NEXT!</strong>',
+        nextLabel: 'next',
         prevLabel: '<span style="color:green">Previous</span>',
         skipLabel: 'Exit',
         doneLabel: 'Thanks'
     };
 
-    $scope.ShouldAutoStart = false;
+  $scope.CompletedEvent = function(){
+    console.log('[directive] completed Event')
+  }
+	$scope.ExitEvent= function(){
+	  console.log('[directive] exit Event')
+	}
+	$scope.ChangeEvent = function(){
+	  console.log('[directive] change Event')
+	}
+	$scope.BeforeChangeEvent= function(){
+	  console.log('[directive] beforeChange Event')
+	}
+  $scope.AfterChangeEvent= function(){
+    console.log('[directive] after change Event')
+  }
+    $scope.clearAndStartNewIntro = function(){
+        $scope.IntroOptions = {
+          steps:[
+          {
+              element: document.querySelector('#step1'),
+              intro: "After being cleared, step 1"
+          },
+          {
+              element: '#step2',
+              intro: 'Setup and details :)',
+              position: 'right'
+          },
+          {
+              element: '.jumbotron',
+              intro: 'We added a small feature, adding <pre>ng-intro-disable-button</pre> your buttons will be disabled when introJs is open :) <br><p style="color:red">if you\'re using anchor tags, you should prevent ng-click manually. </p> <p> <a target="_blank" href="https://github.com/mendhak/angular-intro.js/wiki/How-to-prevent-a-ng-click-event-when-a-tag--a--is-disabled%3F">click here for more details.</a></p>'
+          }
+          ],
+          showStepNumbers: true,
+          showBullets: true,
+          exitOnOverlayClick: false,
+          exitOnEsc:false,
+          nextLabel: '<strong style="color:green">Next!</strong>',
+          prevLabel: '<span style="color:red">Previous</span>',
+          skipLabel: 'Skip',
+          doneLabel: 'Done'
+      };
+      
+      
+      ngIntroService.clear();
+      ngIntroService.setOptions($scope.IntroOptions);
+      
+      ngIntroService.onComplete(function(){
+        console.log('update some cookie or localstorage.')
+      })
+      
+      ngIntroService.onExit(function(){
+        console.log("[service] exit");
+      })
+      
+      ngIntroService.onBeforeChange(function(){
+        console.log("[service] before change");
+      })
+      
+      ngIntroService.onChange(()=>{
+        console.log("[service] on change");
+      })
+      
+      ngIntroService.onAfterChange(()=>{
+        console.log("[service] after Change");
+      })
+      
+      ngIntroService.start();
+    }
 
+}).directive('ngClick', function () {
+  return {
+    restrict: 'A',
+    priority: 1,
+    terminal: true,
+    link: function (scope, element, attr) {
+      var clickAction = attr.ngClick; // get the current ngclick value
+      var d = element.bind('click',function () {
+        if (attr.disabled==undefined) {//check if the tag is available to be clicked
+          scope.$eval(clickAction) // call the event
+        }
+      });
+      scope.$on('$destroy', function(){
+        d(); // destroy the bind we created, so it a memory leak is prevented.
+      })
+    }
+  };
 });
-
