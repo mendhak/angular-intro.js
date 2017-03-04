@@ -17,17 +17,17 @@
 		this.name = 'IntroJsNotAvailable';
 	}
 
-	ngIntro.factory("ngIntroService", ['$rootScope', '$q', function ($rootScope, $q) {
+	ngIntro.factory("ngIntroService", ['$q', function ($q) {
 		if (typeof (introJs) !== 'function') {
 			throw new IntroJsNotAvailable();
 		}
 
 		var intro;
+		var notifyList = {};
 		
-		var deferList = [];
 		var service = {
-			introObject: intro,
-
+			addListener: addListener,
+			removeListener: removeListener,
 			setOptions: setOptions,
 			start: start,
 			exit: exit,
@@ -54,7 +54,22 @@
 			onHintClose: onHintClose,
 			onHintsAdded: onHintsAdded,
 		};
+		Object.defineProperty(service, "intro", {
+			get: function () {
+				return intro;
+			},
+			enumerable: true,
+			configurable: true
+		});
 
+		function addListener(name, cb){
+			if(angular.isFunction(cb))
+				notifyList[name] = cb;
+		}
+		function removeListener(name){
+			delete notifyList[name];
+			
+		}
 		function setOptions(options) {
 			intro.setOptions(options);
 		}
@@ -65,142 +80,143 @@
 			} else {
 				intro.start();
 			}
+			notifyListeners('open');
 		}
-
+		function notifyListeners(newSts){
+			for(var key in notifyList){
+				if(notifyList.hasOwnProperty(key)){
+					if(angular.isFunction(notifyList[key]))
+						notifyList[key](newSts);
+				}
+				
+			}
+		}
 		function exit() {
 			intro.exit();
+			notifyListeners('closed');
 		}
 
 		function previous() {
 			intro.previousStep();
+			notifyListeners('open');
 		}
 
 		function next() {
 			intro.nextStep();
+			notifyListeners('open');
 		}
 
 		function refresh() {
 			intro.refresh();
 		}
 
-		function onComplete() {
-			var q = $q.defer();
-			deferList.push(q);
-			
-			intro.oncomplete(function () {
-				$rootScope.$broadcast('ngIntro-onComplete');
-				q.resolve();
+		function onComplete(cb) {
+			return intro.oncomplete(function () {
+				if(angular.isFunction(cb)) cb();
+				notifyListeners('closed');
 			});
-			
-			return q.promise;
 		}
 
-		function onBeforeChange() {
-			var q = $q.defer();
-			deferList.push(q);
-			
-			intro.onbeforechange(function (targetElement) {
-				$rootScope.$broadcast('ngIntro-onBeforeChange');
+		function onBeforeChange(cb) {
+			return intro.onbeforechange(function () {
+				if(angular.isFunction(cb)) cb();
 			});
-			
-			return q.promise;
 		}
 
-		function onChange() {
-			var q = $q.defer();
-			deferList.push(q);
-			
-			intro.onchange(function (targetElement) {
-				$rootScope.$broadcast('ngIntro-onChange');
-				q.resolve();
+		function onChange(cb) {
+			return intro.onchange(function() {
+				if(angular.isFunction(cb)) cb();
 			});
-			return q.promise;
+			
 		}
 		
-		function clear(){
+		function clear(cb){
 			if(typeof(intro) !=='undefined')
 				intro.exit();
-			for(var i = 0; i< deferList.length; i++){
-				deferList[i].reject();
-			}	
-			deferList = [];
 			
 			intro = new introJs();
+			
+			notifyListeners('closed');
+			
+			if(angular.isFunction(cb)) cb();
+			
+			return intro;
 		}
 
-		function onAfterChange() {
-			var q = $q.defer();
-			deferList.push(q);
-			
-			intro.onafterchange(function (targetElement) {
-				$rootScope.$broadcast('ngIntro-onAfterChange');
-				q.resolve();
+		function onAfterChange(cb) {
+			return intro.onafterchange(function (targetElement) {
+				if(angular.isFunction(cb)) cb();
 			});
-			return q.promise;
 		}
 
-		function onExit(callback) {
-			var q = $q.defer();
-			deferList.push(q);
-			
-			intro.onexit(function () {
-				$rootScope.$broadcast('ngIntro-onExit');
-				q.resolve();
+		function onExit(cb) {
+			return intro.onexit(function () {
+				notifyListeners('closed');
+				if(angular.isFunction(cb)) cb();
 			});
-			return q.promise;
 		}
 		
 		function addHints(){
-			intro.addHints();
+			return intro.addHints();
 		}
 
 		function showHints(){
-			intro.showHints();
+			return intro.showHints();
 		}
 		function hideHint(step){
-			intro.hideHint(step);
+			return intro.hideHint(step);
 		}
 		function hideHints(){
-			intro.hideHints();
+			return intro.hideHints();
 		}
 
-		function onHintClick(){
-			var q = $q.defer();
-			deferList.push(q);
-			
+		function onHintClick(cb){
 			intro.onhintclick(function () {
-				$rootScope.$broadcast('ngIntro-onHintClick');
-				q.resolve();
+				if(angular.isFunction(cb)) cb();
 			});
-			return q.promise;
 		}
 		
-		function onHintClose(){
-			var q = $q.defer();
-			deferList.push(q);
-			
-			intro.onhintclose(function () {
-				$rootScope.$broadcast('ngIntro-onHintClose');
-				q.resolve();
+		function onHintClose(cb){			
+			return intro.onhintclose(function () {
+				if(angular.isFunction(cb)) cb();
 			});
-			return q.promise;
 		}
 		
-		function onHintsAdded(){
-			var q = $q.defer();
-			deferList.push(q);
-			
-			intro.onhintclose(function () {
-				$rootScope.$broadcast('ngIntro-onHintsAdded');
-				q.resolve();
+		function onHintsAdded(cb){			
+			return intro.onhintclose(function () {
+				if(angular.isFunction(cb)) cb();
 			});
-			return q.promise;
 		}
 		
 		clear();
 		
 		return service;
 
+	}]).directive('ngIntroDisableButton',['ngIntroService','$compile', function(ngIntroService, $compile){
+		var id = 0;
+		return{ 
+			restrict:'A',
+			priority: 1,
+			scope:{
+				introDisableButton: '='
+			},
+			link: function (scope, elm, attrs) {
+				var uniqueId = "disabledBtn"+id++;
+				 ngIntroService.addListener(uniqueId, function(value){
+					if (value === 'open') {
+						attrs.$set('disabled', 'disabled');
+					} else {
+						delete attrs.disabled;
+						elm.removeAttr('disabled');
+					}
+				});
+
+				scope.$on('$destroy', function(){
+					ngIntroService.removeListener(uniqueId);
+				});
+				
+			}
+		};
 	}]).directive('ngIntroOptions', ['$timeout', 'ngIntroService', function ($timeout, ngIntro) {
 		return {
 			restrict: 'A',
@@ -233,40 +249,23 @@
 				var destroy = [];
 
 				if (scope.ngIntroOncomplete) {
-					scope.$on('ngIntro-onComplete', function () {
-						scope.ngIntroOncomplete.call(this, scope);
-						$timeout(function () { scope.$digest(); });
-						clearWatches();
-					});
+					ngIntro.onComplete(scope.ngIntroOncomplete);
 				}
 
 				if (scope.ngIntroOnexit) {
-					scope.$on('ngIntro-onExit', function () {
-						scope.ngIntroOnexit.call(this, scope);
-						$timeout(function () { scope.$digest(); });
-						clearWatches();
-					});
+					ngIntro.onExit(scope.ngIntroOnexit);
 				}
 
 				if (scope.ngIntroOnbeforechange) {
-					scope.$on('ngIntro-onBeforeChange', function () {
-						scope.ngIntroOnbeforechange.call(this, targetElement, scope);
-						$timeout(function () { scope.$digest(); });
-					});
+					ngIntro.onBeforeChange(scope.ngIntroOnbeforechange);
 				}
 
 				if (scope.ngIntroOnchange) {
-					scope.$on('ngIntro-onChange', function () {
-						scope.ngIntroOnchange.call(this, targetElement, scope);
-						$timeout(function () { scope.$digest(); });
-					});
+					ngIntro.onChange(scope.ngIntroOnchange);
 				}
 
 				if (scope.ngIntroOnafterchange) {
-					scope.$on('ngIntro-onAfterChange', function () {
-						scope.ngIntroOnafterchange.call(this, targetElement, scope);
-						$timeout(function () { scope.$digest(); });
-					});
+					ngIntro.onAfterChange(scope.ngIntroOnafterchange);
 				}
  
 				scope.ngIntroMethod = function (step) {
@@ -275,48 +274,38 @@
 				};
 
                 scope.ngIntroHintsMethod = function() {
-					
 					ngIntro.setOptions(scope.ngIntroOptions);
 					ngIntro.start(step);
 
                     if(scope.ngIntroOnhintsadded) {
-						scope.$on('ngIntro-onHintsAdded', function () {
-							scope.ngIntroOnhintsadded.call(this, targetElement, scope);
-							$timeout(function () { scope.$digest(); });
-						});
+						ngIntro.onHintsAdded(scope.ngIntroOnbeforechange);
                     }
 
                     if(scope.ngIntroOnhintclick) {
-                       	scope.$on('ngIntro-onHintClick', function () {
-							scope.ngIntroOnhintclick.call(this, targetElement, scope);
-							$timeout(function () { scope.$digest(); });
-						});
+						ngIntro.onHintClick(scope.ngIntroOnbeforechange);
                     }
                     
                     if(scope.ngIntroOnhintclose) {
-						scope.$on('ngIntro-onHintClose', function () {
-							scope.ngIntroOnhintclose.call(this, targetElement, scope);
-							$timeout(function () { scope.$digest(); });
-						});
+						ngIntro.onHintClick(scope.ngIntroOnbeforechange);
                     }
                     
                     intro.addHints();
                 };
                 
                 scope.ngIntroShowHint = function(id) {
-                    intro.showHint(id);
+                    ngIntro.showHint(id);
                 };
 
                 scope.ngIntroShowHints = function() {
-                    intro.showHints();
+                    ngIntro.showHints();
                 };
 
                 scope.ngIntroHideHint = function(id) {
-                    intro.hideHint(id);
+                    ngIntro.hideHint(id);
                 };
 
                 scope.ngIntroHideHints = function() {
-                    intro.hideHints();
+                    ngIntro.hideHints();
                 };
 
 				scope.ngIntroNextMethod = function () {
@@ -377,4 +366,3 @@
 	}]);
 	return ngIntro;
 }));
-

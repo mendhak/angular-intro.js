@@ -29,7 +29,7 @@ This project will return the whole angular module so if you want to use as a dep
 
 ## How to use
 
-You can use the two main directives, which are `ng-intro-options` and `ng-intro-method`,  or you can include the service called `ngIntroService`
+It's possible to include on your controller the service `ngIntroService` and customize as you need, or you may configure on your view the directives which are `ng-intro-options`,  `ng-intro-method` and `ng-intro-disable-button`.
 
 ### Setting Options
 
@@ -49,9 +49,10 @@ The directive will create a method on `$scope.CallMe` so that you can invoke it 
 
 ### Call the start method
 
-You can invoke it from an event such a click,
-
-`ng-click="CallMe();"`
+You can invoke it from an event such as click.
+`
+ng-click="CallMe();"
+`
 
 as long as you are still in the same controller scope.  You can also specify a step number in the method call, `CallMe(3);`.
 
@@ -74,70 +75,59 @@ Intro.js provides several callbacks.  You can receive these callbacks in your co
 `ng-intro-onchange="ChangeEvent"`
 
 In your controller, create `ChangeEvent`
-
+```javascript
     $scope.ChangeEvent = function (targetElement, scope) {
         console.log("Change Event called");
         console.log(targetElement); //The target element
         console.log(this); //The IntroJS object
     };
+```
 
-The other intro.js callbacks you can specify are `ng-intro-oncomplete`, `ng-intro-onexit`, `ng-intro-onchange` `ng-intro-onbeforechange` and `ng-intro-onafterchange`.
+The other intro.js callbacks you can specify are `ng-intro-oncomplete`, `ng-intro-onexit`, `ng-intro-onchange`, `ng-intro-onbeforechange`, `ng-intro-onafterchange`, `ng-intro-onhintsadded`, `ng-intro-onhintclick` and `ng-intro-onhintclose`. 
 
 ### As a service
 
-There are two ways of make use of callbacks:
-
-**Using promises**
-
-The methods that return promises: 
+In your controller:
+```javascript
+    ngIntroService.onComplete(function(){
+        console.log('on complete callback!')
+    });
+```
+the list of supported callbacks are:
 
 * `onComplete`
 * `onExit`
 * `onBeforeChange`
-* `onAfterChange`
 * `onChange`
-
-**Using watches (not recommended, available for compatibility)**
-
-    `scope.$on('ngIntro-onAfterChange', function () {
-    ngIntro.exit();
-    ´
- Its triggers are:
- 
-* `ngIntro-onComplete`
-* `ngIntro-onBeforeChange`
-* `ngIntro-onChange`
-* `ngIntro-onAfterChange`
-* `ngIntro-onExit`
-
-* `ngIntro-onHintclick`
-* `ngIntro-onHintclose`
-* `ngIntro-onHintsAdded`
-
-
-
+* `onAfterChange`
+* `onHintClick`
+* `onHintClose`
+* `onHintsAdded`
 
 ### Exit Method
 
 **Directive** - `ng-intro-exit-method="ExitMe"`
+
 **Callback** - `$scope.ExitMe(function() { //callback } );`
 
 You can also call `$scope.ExitMe()` from your controller. 
 
 
 **Service** - `ngIntroService.exit()`
-**Callback** - `ngIntroService.onExit().then(function(){
-  console.log('do something.')
+
+**Callback** - `ngIntroService.onExit(function(){
+  console.log('do something.');
 });`
 
 
 ### Plunker
 
-You may use as Directive [as shown here](http://plnkr.co/edit/wo9EzfbOFjM7NDoAvmjA?p=preview)
+You may use as Directive standalone without injecting ngIntroService [as shown here](http://plnkr.co/edit/wo9EzfbOFjM7NDoAvmjA?p=preview)
 
 or
 
-alternatively  as Service [as shown here](http://plnkr.co/edit/4JdONL)
+alternatively as Service, [as shown here](http://plnkr.co/edit/4JdONL)
+*i've added the directive, but it's not required, it's there to show the compatibility between both*
 
 ## How to build
 
