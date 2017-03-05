@@ -18,6 +18,7 @@ script:
 
 deploy:
   provider: npm
+  email: "npm@mendhak.com"
   api_key: 
     secure: "O4lUW79nn+4ZX9jjCp5qvH5uUbKqP0UNu19Ra5X/q6TY+goIOh02YzHg2uk34nm7eEDjquo6GeEKIq3ZOTlV/2V6lgkMyMF+1x27VOxvTnObUEcCC1mF2Dpa3kOsCHTKsv3XNJd/KrfYN4LZ8wdlpHcvIcTO/I3njTAxEn+PA/g="
   on:
