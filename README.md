@@ -133,20 +133,22 @@ alternatively as Service, [as shown here](http://plnkr.co/edit/4JdONL)
 
 If you want to build or contribute, first, get the node modules needed (grunt, bower)
 
-    npm install 
-    p.s.: this will run `bower install` after completes :)
+    npm install
 
+Next, use bower to get the JS libraries needed
 
-Then, get grunt to build the typescript into .js and the minified angular-intro.min.js
+    node_modules/.bin/bower install
 
-    node_modules/.bin/grunt watch
-    p.s.: for faster build use `tsc --watch`, but you need run grunt after finish 
+Then, whenever you make any changes, get grunt to build the minified angular-intro.min.js
+
+    node_modules/.bin/grunt
 
 Finally, view the demo page to make sure everything's working; start a web server:
 
     ./node_modules/.bin/grunt connect:server
 
 And browse to `http://localhost:8000/example/index.html`
+
 
 
 
