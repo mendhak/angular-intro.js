@@ -3,14 +3,18 @@ sudo: false
 
 language: node_js
 node_js:
-  - "0.10"
+  - "4"
 
 notifications:
     email: false
 
+before_install:
+  - npm install -g npm@'>=3'
+
 install:
   - npm install
   - node_modules/.bin/bower install
+
 
 script:
   # Just run the default task and make sure it builds, there aren't any tests :(
