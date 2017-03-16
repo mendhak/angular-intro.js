@@ -118,14 +118,14 @@
 		}
 
 		function onBeforeChange(cb) {
-			return intro.onbeforechange(function () {
-				if(angular.isFunction(cb)) cb();
+			return intro.onbeforechange(function (targetElement) {
+				if(angular.isFunction(cb)) cb(targetElement);
 			});
 		}
 
 		function onChange(cb) {
-			return intro.onchange(function() {
-				if(angular.isFunction(cb)) cb();
+			return intro.onchange(function(targetElement) {
+				if(angular.isFunction(cb)) cb(targetElement);
 			});
 			
 		}
@@ -145,7 +145,7 @@
 
 		function onAfterChange(cb) {
 			return intro.onafterchange(function (targetElement) {
-				if(angular.isFunction(cb)) cb();
+				if(angular.isFunction(cb)) cb(targetElement);
 			});
 		}
 
