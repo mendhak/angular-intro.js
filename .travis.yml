@@ -1,28 +1,21 @@
-
 sudo: false
-
 language: node_js
 node_js:
-  - "4"
-
+- '4'
 notifications:
-    email: false
-
+  email: false
 before_install:
-  - npm install -g npm@'>=3'
-
+- npm install -g npm@'>=3'
 install:
-  - npm install
-  - node_modules/.bin/bower install
-
+- npm install
+- node_modules/.bin/bower install
 script:
-  # Just run the default task and make sure it builds, there aren't any tests :(
-  - node_modules/.bin/grunt
-
+- node_modules/.bin/grunt
 deploy:
   provider: npm
-  email: "npm@mendhak.com"
-  api_key: 
-    secure: "O4lUW79nn+4ZX9jjCp5qvH5uUbKqP0UNu19Ra5X/q6TY+goIOh02YzHg2uk34nm7eEDjquo6GeEKIq3ZOTlV/2V6lgkMyMF+1x27VOxvTnObUEcCC1mF2Dpa3kOsCHTKsv3XNJd/KrfYN4LZ8wdlpHcvIcTO/I3njTAxEn+PA/g="
+  email: npm@mendhak.com
+  api_key:
+    secure: NpGw2V+V0yw87pQyh9VJq1h7bxs5yN6jQI1mCNXXxYkCY1/2qe3UQSJt8bnGTAylS0jCZ5MI9kBPYI5MomzsceOrH18RcmaJTonUCuM9rKWSQVZOFJhJenJn+t7J+W3LiUi8V6WlRoJjYrvAX2lRQ+Iv+L//0NqBOgtSdAqmZr8=
   on:
     tags: true
+    repo: mendhak/angular-intro.js
