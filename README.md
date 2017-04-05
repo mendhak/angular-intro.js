@@ -93,7 +93,7 @@ In your controller:
         console.log('on complete callback!')
     });
 ```
-the list of supported callbacks are:
+the list of current callbacks are:
 
 * `onComplete`
 * `onExit`
@@ -103,6 +103,37 @@ the list of supported callbacks are:
 * `onHintClick`
 * `onHintClose`
 * `onHintsAdded`
+
+The current short Interface is:
+p.s. it's avaiable on build folder the .d.ts file
+``` javascript
+	intro: IntroJs;
+	addListener(name: string, callback: Function): void;
+	removeListener(name: string): void;
+	setOptions: IntroJs.Options;
+	start(stepId?: number): IntroJs;
+	exit(): IntroJs;
+	clear(callback: Function): IntroJs;
+	goToStepNumber(stepId: number): IntroJs;
+	addHints(): IntroJs;
+	showHint(hintIdx: number): IntroJs;
+	showHints(): IntroJs;
+	hideHint(hintIdx: number): IntroJs;
+	hideHints(): IntroJs;
+	removeHint(stepid: number): IntroJs;
+	removeHints(): IntroJs;
+	previous(): IntroJs;
+	next(): IntroJs;
+	refresh(): IntroJs;
+	onComplete(callback: Function): void;
+	onExit(callback: Function): void;
+	onBeforeChange(callback: Function): void;
+	onAfterChange(callback: Function): void;
+	onChange(callback: Function): void;
+	onHintClick(callback: Function): void;
+	onHintClose(callback: Function): void;
+	onHintsAdded(callback: Function): void; 
+```
 
 ### Exit Method
 
