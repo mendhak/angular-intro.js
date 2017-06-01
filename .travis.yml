@@ -14,8 +14,7 @@ script:
 deploy:
   provider: npm
   email: npm@mendhak.com
-  api_key:
-    secure: NpGw2V+V0yw87pQyh9VJq1h7bxs5yN6jQI1mCNXXxYkCY1/2qe3UQSJt8bnGTAylS0jCZ5MI9kBPYI5MomzsceOrH18RcmaJTonUCuM9rKWSQVZOFJhJenJn+t7J+W3LiUi8V6WlRoJjYrvAX2lRQ+Iv+L//0NqBOgtSdAqmZr8=
+  api_key: $NPM_TOKEN
   on:
     tags: true
     repo: mendhak/angular-intro.js
