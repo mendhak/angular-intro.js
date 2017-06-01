@@ -244,7 +244,7 @@ namespace ngIntroJs {
 			ngIntroHideHint: "=?",
 			ngIntroHideHints: "=?"
 		};
-		destroy: any = []
+		destroy: any[] = [];
 
 		static factory(): ng.IDirectiveFactory {
 			const directive = (introService: NgIntroService, $timeout: ng.ITimeoutService) => new NgIntroDirective(introService, $timeout);
@@ -252,6 +252,7 @@ namespace ngIntroJs {
 			return directive;
 		}
 		constructor(introService: NgIntroService, $timeout: ng.ITimeoutService) {
+
 			this.link = (scope: ngIntroJs.INgIntroDirectiveScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes) => {
 				if (scope.ngIntroOncomplete) {
 					introService.onComplete(scope.ngIntroOncomplete);
@@ -360,10 +361,12 @@ namespace ngIntroJs {
 					clearWatches();
 				});
 
-				function clearWatches() {
+				let clearWatches = () => {
 					for (let d of this.destroy)
 						d();
 				}
+
+
 			};
 		}
 	}

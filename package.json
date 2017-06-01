@@ -1,6 +1,6 @@
 {
   "name": "angular-intro.js",
-  "version": "3.2.4",
+  "version": "3.2.5",
   "description": "Angular directive to wrap intro.js",
   "main": "src/ng-intro.component.js",
   "types": "build/ng-intro.component.d.ts",
