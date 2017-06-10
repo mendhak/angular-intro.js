@@ -1,6 +1,6 @@
 {
   "name": "angular-intro.js",
-  "version": "3.2.5",
+  "version": "3.2.5-alpha.1",
   "description": "Angular directive to wrap intro.js",
   "main": "src/ng-intro.component.js",
   "types": "build/ng-intro.component.d.ts",
@@ -27,7 +27,6 @@
   },
   "homepage": "https://github.com/mendhak/angular-intro.js",
   "devDependencies": {
-    "bower": "~1.7.9",
     "grunt": "~1.0.1",
     "grunt-cli": "~1.2.0",
     "grunt-contrib-connect": "~1.0.2",
@@ -38,6 +37,7 @@
     "load-grunt-tasks": "~3.5.2"
   },
   "dependencies": {
+    "bower": "~1.7.9",
     "@types/angular": "^1.6.7",
     "@types/intro.js": "^2.4.0",
     "grunt-ts": "^6.0.0-beta.11",
