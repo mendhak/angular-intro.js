@@ -4,6 +4,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-tslint");
     grunt.loadNpmTasks('grunt-ts');
 
+
     // Project configuration.
     grunt.initConfig({
         connect: {
@@ -36,7 +37,18 @@ module.exports = function (grunt) {
             build: {
                 src: ['src/ng-intro.component.js'],
                 dest: 'build/angular-intro.min.js'
-            }
+            },
+            buildNotMinified: {
+                compress: false,
+                options: {
+                     beautify: true,
+                    mangle : false, 
+                    compress : false 
+                },
+                files: {
+                    'build/angular-intro.js': ['src/ng-intro.component.js']
+                }
+            },
         },
         tslint: {
             options: {
