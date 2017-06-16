@@ -7,12 +7,15 @@ namespace ngIntroJs {
 		start(stepId?: number): IntroJs.IntroJs,
 		exit(): IntroJs.IntroJs,
 		clear(callback: Function): IntroJs.IntroJs,
+		goToStepNumber(stepId: number): IntroJs.IntroJs,
 
 		addHints(): IntroJs.IntroJs,
 		showHint(hintIdx: number): IntroJs.IntroJs,
 		showHints(): IntroJs.IntroJs,
 		hideHint(hintIdx: number): IntroJs.IntroJs,
 		hideHints(): IntroJs.IntroJs
+		removeHint(stepid: number): IntroJs.IntroJs
+		removeHints(): IntroJs.IntroJs
 
 		previous(): IntroJs.IntroJs,
 		next(): IntroJs.IntroJs,
@@ -137,6 +140,9 @@ namespace ngIntroJs {
 
 			return this.intro;
 		}
+		goToStepNumber(stepId: number) {
+			return this.intro.goToStepNumber(stepId);
+		}
 
 		addHints() {
 			return this.intro.addHints();
@@ -154,6 +160,13 @@ namespace ngIntroJs {
 
 		hideHints() {
 			return this.intro.hideHints();
+		}
+		removeHint(stepId: number) {
+			return this.intro.removeHint(stepId)
+		}
+
+		removeHints() {
+			return this.intro.removeHints()
 		}
 
 		previous() {
