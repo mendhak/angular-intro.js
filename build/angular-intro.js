@@ -1,10 +1,10 @@
-/*! angular-intro.js - v4.0.0 - 2017-06-12 */
+/*! angular-intro.js - v4.0.0 - 2017-06-16 */
 
 (function(root, factory) {
     if (typeof window.define === "function" && window.define.amd) {
-        window.define([ "angular", "intro.js" ], factory);
+        window.define([ "angular", "introJs" ], factory);
     } else if (typeof window.exports === "object") {
-        window.module.exports = factory(window.require("angular"), window.require("intro.js"));
+        window.module.exports = factory(window.require("angular"), window.require("introJs"));
     } else {
         root.angularIntroJs = factory(root.angular, root.introJs);
     }
@@ -55,6 +55,9 @@
             if (angular.isFunction(cb)) cb();
             return this.intro;
         };
+        NgIntroService.prototype.goToStepNumber = function(stepId) {
+            return this.intro.goToStepNumber(stepId);
+        };
         NgIntroService.prototype.addHints = function() {
             return this.intro.addHints();
         };
@@ -69,6 +72,12 @@
         };
         NgIntroService.prototype.hideHints = function() {
             return this.intro.hideHints();
+        };
+        NgIntroService.prototype.removeHint = function(stepId) {
+            return this.intro.removeHint(stepId);
+        };
+        NgIntroService.prototype.removeHints = function() {
+            return this.intro.removeHints();
         };
         NgIntroService.prototype.previous = function() {
             this.notifyListeners(introStatus.open);

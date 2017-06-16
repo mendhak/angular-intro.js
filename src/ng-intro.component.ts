@@ -62,9 +62,9 @@ namespace ngIntroJs {
 (function (root, factory) {
 	// this is our custom loader
 	if (typeof (<any>window).define === "function" && (<any>window).define.amd) {
-		(<any>window).define(["angular", "intro.js"], factory);
+		(<any>window).define(["angular", "introJs"], factory);
 	} else if (typeof (<any>window).exports === "object") {
-		(<any>window).module.exports = factory((<any>window).require("angular"), (<any>window).require("intro.js"));
+		(<any>window).module.exports = factory((<any>window).require("angular"), (<any>window).require("introJs"));
 	} else {
 		root.angularIntroJs = factory(root.angular, root.introJs);
 	}
