@@ -33,7 +33,7 @@
     "grunt-contrib-jshint": "~1.0.0",
     "grunt-contrib-uglify": "~2.0.0",
     "grunt-contrib-watch": "~1.0.0",
-    "grunt-tslint": "^4.0.1",
+    "grunt-tslint": "~4.0.1",
     "load-grunt-tasks": "~3.5.2"
   },
   "dependencies": {
@@ -43,6 +43,6 @@
     "grunt-ts": "~6.0.0-beta.11",
     "grunt-tslint": "~4.0.1",
     "tslint": "~4.5.1",
-    "typescript": "~2.2.1"
+    "typescript": "~2.3.4"
   }
 }
