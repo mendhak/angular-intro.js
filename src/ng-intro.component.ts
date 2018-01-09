@@ -114,7 +114,7 @@ namespace ngIntroJs {
 
 		start(step?: number) {
 			if (typeof (step) === "number") {
-				this.intro.start().goToStep(step);
+				this.intro.goToStep(step).start();
 			} else {
 				this.intro.start();
 			}
