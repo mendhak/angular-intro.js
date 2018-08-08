@@ -65,9 +65,9 @@ declare const module: any;
 declare const require: any;
 (function (root, factory) {
 	if (typeof define === "function" && define.amd) {
-		define(["angular", "introJs"], factory);
+		define(["angular", "intro.js"], factory);
 	} else if (typeof module === "object" && module.exports) {
-		module.exports = factory(require("angular"), require("introJs"));
+		module.exports = factory(require("angular"), require("intro.js"));
 	} else {
 		root.angularIntroJs = factory(root.angular, root.introJs);
 	}
