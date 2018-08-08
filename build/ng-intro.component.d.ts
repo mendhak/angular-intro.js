@@ -55,3 +55,6 @@ declare namespace ngIntroJs {
         [name: string]: Function;
     }
 }
+declare const define: any;
+declare const module: any;
+declare const require: any;
