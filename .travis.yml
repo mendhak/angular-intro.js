@@ -1,11 +1,11 @@
 sudo: false
 language: node_js
 node_js:
-- '4'
+- '8'
 notifications:
   email: false
 before_install:
-- npm install -g npm@'>=3'
+- npm install -g npm@'>=5'
 install:
 - npm install
 - node_modules/.bin/bower install
