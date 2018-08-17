@@ -40,8 +40,8 @@
     "tslint": "~4.5.1",
     "typescript": "~2.3.4"
   },
-  "dependencies": {
+  "peerDependencies": {
     "angular": "^1.4.0",
-    "intro.js": "~2.5.0"
+    "intro.js": "^2.5.0"
   }
 }
