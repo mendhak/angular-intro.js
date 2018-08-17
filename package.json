@@ -37,7 +37,6 @@
     "@types/angular": "~1.6.7",
     "@types/intro.js": "~2.4.0",
     "grunt-ts": "~6.0.0-beta.11",
-    "grunt-tslint": "~4.0.1",
     "tslint": "~4.5.1",
     "typescript": "~2.3.4"
   },

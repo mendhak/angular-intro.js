@@ -7,11 +7,7 @@ An angularjs directive that wraps [intro.js](http://usablica.github.io/intro.js/
 
 See [the project page](http://code.mendhak.com/angular-intro.js/) for an overview.
 
-## Bower
 
-You can install this package through `Bower` by using the following command :
-
-    bower install angular-intro.js --save
 
 ## NPM
 
@@ -162,10 +158,9 @@ alternatively as Service, [as shown here](http://plnkr.co/edit/4JdONL)
 
 ## How to build
 
-If you want to build or contribute, first, get the node modules needed (grunt, bower)
+If you want to build or contribute, first, get the node modules needed (grunt, etc)
 
     npm install 
-    p.s.: this will run `bower install` after completes :)
 
 
 Then, get grunt to build the typescript into .js and the minified angular-intro.min.js
