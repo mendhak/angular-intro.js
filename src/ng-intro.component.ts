@@ -59,17 +59,19 @@ namespace ngIntroJs {
 		[name: string]: Function
 	}
 }
+// UMD loader: https://github.com/umdjs/umd/blob/master/templates/returnExports.js
+declare const define: any;
+declare const module: any;
+declare const require: any;
 (function (root, factory) {
-	// this is our custom loader
-	if (typeof (<any>window).define === "function" && (<any>window).define.amd) {
-		(<any>window).define(["angular", "introJs"], factory);
-	} else if (typeof (<any>window).exports === "object") {
-		(<any>window).module.exports = factory((<any>window).require("angular"), (<any>window).require("introJs"));
+	if (typeof define === "function" && define.amd) {
+		define(["angular", "intro.js"], factory);
+	} else if (typeof module === "object" && module.exports) {
+		module.exports = factory(require("angular"), require("intro.js"));
 	} else {
 		root.angularIntroJs = factory(root.angular, root.introJs);
 	}
-}(this, function (angular: ng.IAngularStatic, introJs: IntroJs.Factory) {
-
+}(typeof self !== "undefined" ? self : this, function (angular: ng.IAngularStatic, introJs: IntroJs.Factory) {
 	let introStatus = { // i wanted to use enums, but for now it"ll work
 		open: "open",
 		closed: "closed"
